@@ -1,13 +1,13 @@
-package com.example.bibliotekbackend.Books;
+package com.example.bibliotekbackend.Customers;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class BooksService {
+public class CustomerService {
 
     @Autowired
-    BooksDao booksDao;
-
+    CustomerDao customerDao;
 
 }

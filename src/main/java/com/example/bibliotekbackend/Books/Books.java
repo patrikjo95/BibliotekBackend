@@ -54,5 +54,16 @@ public class Books {
     public void setBook_genre(String book_genre) {
         this.book_genre = book_genre;
     }
+
+    @Override
+    public String toString() {
+        return "Books{" +
+                "ID_book=" + ID_book +
+                ", book_title='" + book_title + '\'' +
+                ", book_qty=" + book_qty +
+                ", book_author='" + book_author + '\'' +
+                ", book_genre='" + book_genre + '\'' +
+                '}';
+    }
 }
 

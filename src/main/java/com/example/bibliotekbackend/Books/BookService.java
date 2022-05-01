@@ -48,6 +48,11 @@ public class BookService {
         return bookString;
     }
 
+    public String downloadBookByTitle(String book_title) {
+        return bookDao.downloadBookByTitle(book_title);
+    }
+
+
     /**
      * @return gson String with information regarding all books, sends it to DAO class.
      */
@@ -69,9 +74,4 @@ public class BookService {
         Gson gson = new Gson();
         return gson.toJson(book);
     }
-
-    public String downloadBookByTitle(String book_title) {
-        return bookDao.downloadBookByTitle(book_title);
-    }
-
 }

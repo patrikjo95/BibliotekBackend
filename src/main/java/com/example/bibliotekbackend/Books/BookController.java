@@ -32,7 +32,7 @@ public class BookController {
                            @RequestParam(value = "book_title", defaultValue = "noTitle") String book_title,
                            @RequestParam(value = "book_qty", defaultValue = "0") int book_qty,
                            @RequestParam(value = "book_author", defaultValue = "noBook_author") String book_author,
-                           @RequestParam(value = "book_genre", defaultValue = "noBook_genre") String book_genre){
+                           @RequestParam(value = "book_genre", defaultValue = "noBook_genre") String book_genre) {
         bookService.updateBook(ID_book, book_title, book_qty, book_author, book_genre);
     }
 
@@ -40,7 +40,7 @@ public class BookController {
      * Sends request to delete a book from database by ID
      */
     @DeleteMapping("/deleteBookByID")
-    public void deleteBook(@RequestParam(value = "ID_book", defaultValue = "-1")int ID_book) {
+    public void deleteBook(@RequestParam(value = "ID_book", defaultValue = "-1") int ID_book) {
         bookService.deleteBook(ID_book);
     }
 
@@ -60,6 +60,11 @@ public class BookController {
         return bookService.downloadAllBooks();
     }
 
+    @GetMapping("/downloadBookByTitle")
+    public String downloadBookByTitle(@RequestParam(value = "book_title", defaultValue = "noBook_title") String book_title) {
+        return bookService.downloadBookByTitle(book_title);
+    }
+
     /**
      * Sends request to download a recent book that were
      * inserted into the database
@@ -68,10 +73,4 @@ public class BookController {
     public String downloadMostRecent() {
         return bookService.downloadMostRecentBook();
     }
-
-    @GetMapping("/downloadBookByTitle")
-    public String downloadBookByTitle(@RequestParam(value = "book_title", defaultValue = "noBook_title") String book_title) {
-        return bookService.downloadBookByTitle(book_title);
-    }
-
 }

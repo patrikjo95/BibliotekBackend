@@ -64,7 +64,7 @@ public class BookDao {
         int result = jdbcTemplate.update(query, book_title, book_qty, book_author, book_genre, ID_book);
 
         if (result > 0) {
-            System.out.println(result + "book updated in database");
+            System.out.println(result + " book updated in database");
             this.error = "book updated in database";
         }
     }
@@ -74,7 +74,7 @@ public class BookDao {
      */
     public void deleteBook(int ID_book) {
 
-        String query = "DELETE FROM books WHERE ID_book = ?";
+        String query = "DELETE FROM books WHERE ID_book = ?;";
 
         int result = jdbcTemplate.update(query, ID_book);
 
@@ -89,7 +89,7 @@ public class BookDao {
      */
     public Book downloadOneBookByID(int ID_book) {
 
-        String query = "SELECT * FROM books ID_book = ?;";
+        String query = "SELECT * FROM books WHERE ID_book = ?;";
 
         return this.jdbcTemplate.queryForObject(query, new RowMapper<Book>() {
             @Override
@@ -111,7 +111,7 @@ public class BookDao {
      */
     public String downloadBookByTitle(String book_title) {
         Gson gson = new Gson();
-        String query = "SELECT * FROM books WHERE book_title = ?";
+        String query = "SELECT * FROM books WHERE book_title = ?;";
         Book temp = this.jdbcTemplate.queryForObject(query, (rs, rowNum) -> new Book(
                 rs.getInt("ID_book"),
                 rs.getString("book_title"),

@@ -1,13 +1,13 @@
 package com.example.bibliotekbackend.Books;
 
-public class Books {
+public class Book {
     private int ID_book;
     private String book_title;
     private int book_qty;
     private String book_author;
     private String book_genre;
 
-    public Books(int ID_book, String book_title, int book_qty, String book_author, String book_genre) {
+    public Book(int ID_book, String book_title, int book_qty, String book_author, String book_genre) {
         this.ID_book = ID_book;
         this.book_title = book_title;
         this.book_qty = book_qty;

@@ -1,11 +1,11 @@
 package com.example.bibliotekbackend.Rooms;
 
-public class Rooms {
+public class Room {
     private int ID_room;
     private String room_name;
 
 
-    public Rooms(int ID_room, String room_name) {
+    public Room(int ID_room, String room_name) {
         this.ID_room = ID_room;
         this.room_name = room_name;
     }

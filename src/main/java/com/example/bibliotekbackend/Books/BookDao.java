@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -27,14 +26,14 @@ import com.google.gson.Gson;
  * Data access object for books table in database
  */
 @Repository
-public class BooksDao {
+public class BookDao {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
     private String error;
 
-    public BooksDao() {
+    public BookDao() {
         this.error = "no";
         this.jdbcTemplate = new JdbcTemplate();
     }
@@ -44,7 +43,7 @@ public class BooksDao {
     /**
      * method to insert a new Book into the database
      */
-    public void insertNewBook(String book_title, int book_qty, String book_author, String book_genre) {
+    public void insertBook(String book_title, int book_qty, String book_author, String book_genre) {
         String query = "INSERT INTO books VALUES(null,?,?,?,?);";
 
         int result = jdbcTemplate.update(query, book_title, book_qty, book_author, book_genre);

@@ -4,6 +4,10 @@ package com.example.bibliotekbackend.Books;
 // Toros
 // added methods
 
+// 2022 may 01
+// Toros
+// imported Gson
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -16,8 +20,12 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
-import com.google.gson.Gson; // Why not working??
 
+import com.google.gson.Gson;
+
+/**
+ * Data access object for books table in database
+ */
 @Repository
 public class BooksDao {
 
@@ -33,6 +41,9 @@ public class BooksDao {
 
     // for ref:
     // int ID_book, String book_title, int book_qty, String book_author, String book_genre
+    /**
+     * method to insert a new Book into the database
+     */
     public void insertNewBook(String book_title, int book_qty, String book_author, String book_genre) {
         String query = "INSERT INTO books VALUES(null,?,?,?,?);";
 
@@ -44,6 +55,9 @@ public class BooksDao {
         }
     }
 
+    /**
+     * updates a book in database by ID
+     */
     public void updateBook(int ID_book, String book_title, int book_qty, String book_author, String book_genre) {
 
         String query = "UPDATE books SET book_title = ?, book_qty = ?, book_author = ?, book_genre = ? WHERE ID_book = ?;";
@@ -56,6 +70,9 @@ public class BooksDao {
         }
     }
 
+    /**
+     * method to delete a book from database using ID
+     */
     public void deleteBook(int ID_book) {
 
         String query = "DELETE FROM books WHERE ID_book = ?";
@@ -68,6 +85,9 @@ public class BooksDao {
         }
     }
 
+    /**
+     * gets one book from the database by id
+     */
     public Book downloadOneBookByID(int ID_book) {
 
         String query = "SELECT * FROM books ID_book = ?;";
@@ -87,59 +107,56 @@ public class BooksDao {
         }, ID_book);
     }
 
-    // Why GSON and JSON not working??
-    public String downloadBookByTitle(String book_title){
+    /**
+     * gets one book from the database by title
+     */
+    public String downloadBookByTitle(String book_title) {
         Gson gson = new Gson();
         String query = "SELECT * FROM books WHERE book_title = ?";
-        Book temp = this.jdcbTemplate.queryForObject(query, (rs, rowNum) -> new Book(
+        Book temp = this.jdbcTemplate.queryForObject(query, (rs, rowNum) -> new Book(
                 rs.getInt("ID_book"),
                 rs.getString("book_title"),
                 rs.getInt("book_qty"),
                 rs.getString("book_author"),
-                rs.getString("book_genre"),
-        ), book_title);
+                rs.getString("book_genre")), book_title);
         return gson.toJson(temp);
     }
 
-    public ArrayList<Book> downloadAllBooks(){
+    /**
+     * downloads all books from the database
+     * @return ArrayList<Book>
+     */
+    public ArrayList<Book> downloadAllBooks() {
         String query = "SELECT * FROM books;";
         ArrayList<Book> books = new ArrayList<>();
         List<Map<String, Object>> rows = jdbcTemplate.queryForList(query);
 
-        for(Map<String, Object> row : rows) {
+        for (Map<String, Object> row : rows) {
             Book book = new Book(
                     (int) (long) row.get("ID_book"),
                     String.valueOf(row.get("book_title")),
-                    String.valueOf(row.get("book_qty")),
+                    (int) (long) row.get("book_qty"),
                     String.valueOf(row.get("book_author")),
-                    String.valueOf(row.get("book_genre"));
+                    String.valueOf(row.get("book_genre")));
             books.add(book);
         }
         books.sort(Comparator.comparing(Book::getBook_title));
         return books;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    /**
+     * Method to download the book with the highest id, meaning its new and should be on our frontpage as a recommendation
+     */
+    public Book newlyAddedBook() {
+        String query = "SELECT * FROM books WHERE ID_book = (SELECT MAX(ID_book) FROM books);";
+        Book temp = jdbcTemplate.queryForObject(query, (rs, rowNum) -> {
+            Book book = new Book(rs.getInt("ID_book"),
+                    rs.getString("book_title"),
+                    rs.getInt("book_qty"),
+                    rs.getString("book_author"),
+                    rs.getString("book_genre"));
+            return book;
+        });
+        return temp;
+    }
 }

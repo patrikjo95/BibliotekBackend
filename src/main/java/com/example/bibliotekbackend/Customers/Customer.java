@@ -1,12 +1,12 @@
 package com.example.bibliotekbackend.Customers;
 
-public class Customers {
+public class Customer {
     private int ID_customers;
     private String customer_username;
     private String customers_password;
 
 
-    public Customers(int ID_customer, String customer_username, String customer_password) {
+    public Customer(int ID_customer, String customer_username, String customer_password) {
         this.ID_customers = ID_customer;
         this.customer_username = customer_username;
         this.customers_password = customer_password;

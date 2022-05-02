@@ -7,12 +7,18 @@ public class Book {
     private String book_author;
     private String book_genre;
 
-    public Book(int ID_book, String book_title, int book_qty, String book_author, String book_genre) {
+    private String book_year;
+
+    private String book_URL;
+
+    public Book(int ID_book, String book_title, int book_qty, String book_author, String book_genre, String book_year, String book_URL) {
         this.ID_book = ID_book;
         this.book_title = book_title;
         this.book_qty = book_qty;
         this.book_author = book_author;
         this.book_genre = book_genre;
+        this.book_year = book_year;
+        this.book_URL = book_URL;
     }
 
     public int getID_book() {
@@ -55,6 +61,22 @@ public class Book {
         this.book_genre = book_genre;
     }
 
+    public String getBook_year() {
+        return book_year;
+    }
+
+    public void setBook_year(String book_year) {
+        this.book_year = book_year;
+    }
+
+    public String getBook_URL() {
+        return book_URL;
+    }
+
+    public void setBook_URL(String book_URL) {
+        this.book_URL = book_URL;
+    }
+
     @Override
     public String toString() {
         return "Books{" +
@@ -63,6 +85,8 @@ public class Book {
                 ", book_qty=" + book_qty +
                 ", book_author='" + book_author + '\'' +
                 ", book_genre='" + book_genre + '\'' +
+                ", book_year='" + book_year + '\'' +
+                ", book_URL='" + book_URL + '\'' +
                 '}';
     }
 }

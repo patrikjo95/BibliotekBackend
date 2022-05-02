@@ -20,9 +20,11 @@ public class BookController {
     public void insertBook(@RequestParam(value = "book_title", defaultValue = "noTitle") String book_title,
                            @RequestParam(value = "book_qty", defaultValue = "0") int book_qty,
                            @RequestParam(value = "book_author", defaultValue = "noBook_author") String book_author,
-                           @RequestParam(value = "book_genre", defaultValue = "noBook_genre") String book_genre)
-    {
-        bookService.insertBook(book_title, book_qty, book_author, book_genre);
+                           @RequestParam(value = "book_genre", defaultValue = "noBook_genre") String book_genre,
+                           @RequestParam(value = "book_year", defaultValue = "noBook_year") String book_year,
+                           @RequestParam(value = "book_URL", defaultValue = "noBook_URL") String book_URL
+    ) {
+        bookService.insertBook(book_title, book_qty, book_author, book_genre, book_year, book_URL);
     }
 
     /**
@@ -33,8 +35,11 @@ public class BookController {
                            @RequestParam(value = "book_title", defaultValue = "noTitle") String book_title,
                            @RequestParam(value = "book_qty", defaultValue = "0") int book_qty,
                            @RequestParam(value = "book_author", defaultValue = "noBook_author") String book_author,
-                           @RequestParam(value = "book_genre", defaultValue = "noBook_genre") String book_genre) {
-        bookService.updateBook(ID_book, book_title, book_qty, book_author, book_genre);
+                           @RequestParam(value = "book_genre", defaultValue = "noBook_genre") String book_genre,
+                           @RequestParam(value = "book_year", defaultValue = "noBook_year") String book_year,
+                           @RequestParam(value = "book_URL", defaultValue = "noBook_URL") String book_URL
+    ) {
+        bookService.updateBook(ID_book, book_title, book_qty, book_author, book_genre, book_year, book_URL);
     }
 
     /**

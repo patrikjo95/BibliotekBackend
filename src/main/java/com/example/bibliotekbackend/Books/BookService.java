@@ -19,15 +19,15 @@ public class BookService {
     /**
      * Sends information to DAO class for inserting one new book.
      */
-    public void insertBook(String book_title, int book_qty, String book_author, String book_genre) {
-        bookDao.insertBook(book_title, book_qty, book_author, book_genre);
+    public void insertBook(String book_title, int book_qty, String book_author, String book_genre, String book_year, String book_URL) {
+        bookDao.insertBook(book_title, book_qty, book_author, book_genre, book_year, book_URL);
     }
 
     /**
      * Sends information to DAO class for updating one book.
      */
-    public void updateBook(int ID_book, String book_title, int book_qty, String book_author, String book_genre) {
-        bookDao.updateBook(ID_book, book_title, book_qty, book_author, book_genre);
+    public void updateBook(int ID_book, String book_title, int book_qty, String book_author, String book_genre, String book_year, String book_URL) {
+        bookDao.updateBook(ID_book, book_title, book_qty, book_author, book_genre, book_year, book_URL);
     }
 
     /**

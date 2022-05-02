@@ -39,14 +39,15 @@ public class BookDao {
     }
 
     // for ref:
-    // int ID_book, String book_title, int book_qty, String book_author, String book_genre
+    // int ID_book, String book_title, int book_qty, String book_author, String book_genre, String book_year, String book_URL
+
     /**
      * method to insert a new Book into the database
      */
-    public void insertBook(String book_title, int book_qty, String book_author, String book_genre) {
-        String query = "INSERT INTO books VALUES(null,?,?,?,?);";
+    public void insertBook(String book_title, int book_qty, String book_author, String book_genre, String book_year, String book_URL) {
+        String query = "INSERT INTO books VALUES(null,?,?,?,?,?,?);";
 
-        int result = jdbcTemplate.update(query, book_title, book_qty, book_author, book_genre);
+        int result = jdbcTemplate.update(query, book_title, book_qty, book_author, book_genre, book_year, book_URL);
 
         if (result > 0) {
             System.out.println(result + " book added to database");
@@ -57,11 +58,11 @@ public class BookDao {
     /**
      * updates a book in database by ID
      */
-    public void updateBook(int ID_book, String book_title, int book_qty, String book_author, String book_genre) {
+    public void updateBook(int ID_book, String book_title, int book_qty, String book_author, String book_genre, String book_year, String book_URL) {
 
-        String query = "UPDATE books SET book_title = ?, book_qty = ?, book_author = ?, book_genre = ? WHERE ID_book = ?;";
+        String query = "UPDATE books SET book_title = ?, book_qty = ?, book_author = ?, book_genre = ?, book_year = ?, book_URL = ? WHERE ID_book = ?;";
 
-        int result = jdbcTemplate.update(query, book_title, book_qty, book_author, book_genre, ID_book);
+        int result = jdbcTemplate.update(query, book_title, book_qty, book_author, book_genre, book_year, book_URL, ID_book);
 
         if (result > 0) {
             System.out.println(result + " book updated in database");
@@ -99,7 +100,9 @@ public class BookDao {
                         rs.getString("book_title"),
                         rs.getInt("book_qty"),
                         rs.getString("book_author"),
-                        rs.getString("book_genre")
+                        rs.getString("book_genre"),
+                        rs.getString("book_year"),
+                        rs.getString("book_URL")
                 );
                 return innerBook;
             }
@@ -117,12 +120,15 @@ public class BookDao {
                 rs.getString("book_title"),
                 rs.getInt("book_qty"),
                 rs.getString("book_author"),
-                rs.getString("book_genre")), book_title);
+                rs.getString("book_genre"),
+                rs.getString("book_year"),
+                rs.getString("book_URL")), book_title);
         return gson.toJson(temp);
     }
 
     /**
      * downloads all books from the database
+     *
      * @return ArrayList<Book>
      */
     public ArrayList<Book> downloadAllBooks() {
@@ -136,7 +142,9 @@ public class BookDao {
                     String.valueOf(row.get("book_title")),
                     (int) (long) row.get("book_qty"),
                     String.valueOf(row.get("book_author")),
-                    String.valueOf(row.get("book_genre")));
+                    String.valueOf(row.get("book_genre")),
+                    String.valueOf(row.get("book_year")),
+                    String.valueOf(row.get("book_URL")));
             books.add(book);
         }
         books.sort(Comparator.comparing(Book::getBook_title));
@@ -153,7 +161,9 @@ public class BookDao {
                     rs.getString("book_title"),
                     rs.getInt("book_qty"),
                     rs.getString("book_author"),
-                    rs.getString("book_genre"));
+                    rs.getString("book_genre"),
+                    rs.getString("book_year"),
+                    rs.getString("book_URL"));
             return book;
         });
         return temp;

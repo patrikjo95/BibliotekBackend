@@ -1,7 +1,10 @@
 package com.example.bibliotekbackend.Books;
 
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RestController
 public class BookController {
@@ -17,14 +20,22 @@ public class BookController {
      * Sends request to insert a new book to database
      */
     @GetMapping ("/insertBook")
-    public void insertBook(@RequestParam(value = "book_title", defaultValue = "noTitle") String book_title,
-                           @RequestParam(value = "book_qty", defaultValue = "0") int book_qty,
-                           @RequestParam(value = "book_author", defaultValue = "noBook_author") String book_author,
-                           @RequestParam(value = "book_genre", defaultValue = "noBook_genre") String book_genre,
-                           @RequestParam(value = "book_year", defaultValue = "noBook_year") String book_year,
-                           @RequestParam(value = "book_URL", defaultValue = "noBook_URL") String book_URL
+    public String insertBook(@RequestParam(value = "new_book_title") String book_title,
+                           @RequestParam(value = "new_book_qty") int book_qty,
+                           @RequestParam(value = "new_book_author") String book_author,
+                           @RequestParam(value = "new_book_genre") String book_genre,
+                           @RequestParam(value = "new_book_year") int book_year,
+                           @RequestParam(value = "new_book_URL") String book_URL
     ) {
-        bookService.insertBook(book_title, book_qty, book_author, book_genre, book_year, book_URL);
+        Book book = new Book(book_title, book_qty, book_author, book_genre, book_year, book_URL);
+
+        Map outParameters = bookService.insertBook(book);
+
+        Gson gson = new Gson();
+
+        return gson.toJson(outParameters);
+
+        //bookService.insertBook(book_title, book_qty, book_author, book_genre, book_year, book_URL);
     }
 
     /**

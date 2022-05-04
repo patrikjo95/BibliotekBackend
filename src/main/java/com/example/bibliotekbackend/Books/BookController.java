@@ -16,7 +16,7 @@ public class BookController {
     /**
      * Sends request to insert a new book to database
      */
-    @PostMapping("/insertBook")
+    @GetMapping ("/insertBook")
     public void insertBook(@RequestParam(value = "book_title", defaultValue = "noTitle") String book_title,
                            @RequestParam(value = "book_qty", defaultValue = "0") int book_qty,
                            @RequestParam(value = "book_author", defaultValue = "noBook_author") String book_author,

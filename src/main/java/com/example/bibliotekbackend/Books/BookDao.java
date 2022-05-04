@@ -11,14 +11,14 @@ package com.example.bibliotekbackend.Books;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import com.google.gson.Gson;
 
@@ -44,15 +44,42 @@ public class BookDao {
     /**
      * method to insert a new Book into the database
      */
-    public void insertBook(String book_title, int book_qty, String book_author, String book_genre, String book_year, String book_URL) {
-        String query = "INSERT INTO books VALUES(null,?,?,?,?,?,?);";
+    public Map insertBook(String book_title, int book_qty, String book_author, String book_genre, int book_year, String book_URL) {
+        SimpleJdbcCall jdbcCall = new SimpleJdbcCall(jdbcTemplate).withProcedureName("add_book");
+
+        Map<String, String> inParameters = new HashMap<>();
+
+        Book book = new Book(book_title, book_qty, book_author, book_genre, book_year, book_URL);
+
+
+        inParameters.put("new_book_title", book_title);
+        inParameters.put("new_book_qty", String.valueOf(book_qty));
+        inParameters.put("new_book_author", book_author);
+        inParameters.put("new_book_genre", book_genre);
+        inParameters.put("new_book_year" , String.valueOf(book_year));
+        inParameters.put("new_book_URL", book_URL);
+
+        SqlParameterSource in = new MapSqlParameterSource(inParameters);
+
+        Map<String, Object> outParameters = jdbcCall.execute(in);
+
+        book.setBook_title(book_title);
+        book.setBook_qty(book_qty);
+        book.setBook_author(book_author);
+        book.setBook_genre(book_genre);
+        book.setBook_year(book_year);
+        book.setBook_URL(book_URL);
+
+        return outParameters;
+
+        /*String query = "INSERT INTO books VALUES(null,?,?,?,?,?,?);";
 
         int result = jdbcTemplate.update(query, book_title, book_qty, book_author, book_genre, book_year, book_URL);
 
         if (result > 0) {
             System.out.println(result + " book added to database");
             this.error = "book added to database";
-        }
+        }*/
     }
 
     /**
@@ -101,7 +128,7 @@ public class BookDao {
                         rs.getInt("book_qty"),
                         rs.getString("book_author"),
                         rs.getString("book_genre"),
-                        rs.getString("book_year"),
+                        rs.getInt("book_year"),
                         rs.getString("book_URL")
                 );
                 return innerBook;
@@ -121,7 +148,7 @@ public class BookDao {
                 rs.getInt("book_qty"),
                 rs.getString("book_author"),
                 rs.getString("book_genre"),
-                rs.getString("book_year"),
+                rs.getInt("book_year"),
                 rs.getString("book_URL")), book_title);
         return gson.toJson(temp);
     }
@@ -143,7 +170,7 @@ public class BookDao {
                     (int) (long) row.get("book_qty"),
                     String.valueOf(row.get("book_author")),
                     String.valueOf(row.get("book_genre")),
-                    String.valueOf(row.get("book_year")),
+                    (int) (long) (row.get("book_year")),
                     String.valueOf(row.get("book_URL")));
             books.add(book);
         }
@@ -162,7 +189,7 @@ public class BookDao {
                     rs.getInt("book_qty"),
                     rs.getString("book_author"),
                     rs.getString("book_genre"),
-                    rs.getString("book_year"),
+                    rs.getInt("book_year"),
                     rs.getString("book_URL"));
             return book;
         });

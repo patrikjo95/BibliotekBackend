@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 @Service
 public class BookService {
@@ -19,8 +20,8 @@ public class BookService {
     /**
      * Sends information to DAO class for inserting one new book.
      */
-    public void insertBook(String book_title, int book_qty, String book_author, String book_genre, String book_year, String book_URL) {
-        bookDao.insertBook(book_title, book_qty, book_author, book_genre, book_year, book_URL);
+    public Map insertBook(Book book) {
+        return bookDao.insertBook(book.getBook_title(), book.getBook_qty(), book.getBook_author(), book.getBook_genre(), book.getBook_year(), book.getBook_URL());
     }
 
     /**

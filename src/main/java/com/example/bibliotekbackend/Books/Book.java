@@ -22,6 +22,12 @@ public class Book {
     }
 
     public Book(String book_title, int book_qty, String book_author, String book_genre, int book_year, String book_url) {
+        this.book_title = book_title;
+        this.book_qty = book_qty;
+        this.book_author = book_author;
+        this.book_genre = book_genre;
+        this.book_year = book_year;
+        this.book_URL = book_url;
     }
 
     public int getID_book() {

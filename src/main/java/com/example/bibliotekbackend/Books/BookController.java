@@ -21,7 +21,7 @@ public class BookController {
      */
     @GetMapping ("/insertBook")
     public String insertBook(@RequestParam(value = "new_book_title") String book_title,
-                           @RequestParam(value = "new_book_qty") int book_qty,
+                           @RequestParam(value = "new_book_qty")int book_qty,
                            @RequestParam(value = "new_book_author") String book_author,
                            @RequestParam(value = "new_book_genre") String book_genre,
                            @RequestParam(value = "new_book_year") int book_year,

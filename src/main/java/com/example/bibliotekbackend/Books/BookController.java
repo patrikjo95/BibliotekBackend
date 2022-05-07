@@ -29,6 +29,8 @@ public class BookController {
     ) {
         Book book = new Book(book_title, book_qty, book_author, book_genre, book_year, book_URL);
 
+        System.out.println("Controller" + book); // ??
+
         Map outParameters = bookService.insertBook(book);
 
         Gson gson = new Gson();

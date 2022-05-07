@@ -44,7 +44,7 @@ public class BookDao {
     /**
      * method to insert a new Book into the database
      */
-    public Map insertBook(String book_title, int book_qty, String book_author, String book_genre, int book_year, String book_URL) {
+    public Map insertBook(String book_title, String book_qty, String book_author, String book_genre, String book_year, String book_URL) {
         SimpleJdbcCall jdbcCall = new SimpleJdbcCall(jdbcTemplate).withProcedureName("add_book");
 
         Map<String, String> inParameters = new HashMap<>();
@@ -53,10 +53,10 @@ public class BookDao {
 
 
         inParameters.put("new_book_title", book_title);
-        inParameters.put("new_book_qty", String.valueOf(book_qty));
+        inParameters.put("new_book_qty", book_qty);
         inParameters.put("new_book_author", book_author);
         inParameters.put("new_book_genre", book_genre);
-        inParameters.put("new_book_year" , String.valueOf(book_year));
+        inParameters.put("new_book_year" , book_year);
         inParameters.put("new_book_URL", book_URL);
 
         System.out.println("Dao" + inParameters); // ??
@@ -76,14 +76,6 @@ public class BookDao {
 
         return outParameters;
 
-        /*String query = "INSERT INTO books VALUES(null,?,?,?,?,?,?);";
-
-        int result = jdbcTemplate.update(query, book_title, book_qty, book_author, book_genre, book_year, book_URL);
-
-        if (result > 0) {
-            System.out.println(result + " book added to database");
-            this.error = "book added to database";
-        }*/
     }
 
     /**
@@ -127,12 +119,12 @@ public class BookDao {
             @Override
             public Book mapRow(ResultSet rs, int rowNum) throws SQLException {
                 Book innerBook = new Book(
-                        rs.getInt("ID_book"),
+                        rs.getString("ID_book"),
                         rs.getString("book_title"),
-                        rs.getInt("book_qty"),
+                        rs.getString("book_qty"),
                         rs.getString("book_author"),
                         rs.getString("book_genre"),
-                        rs.getInt("book_year"),
+                        rs.getString("book_year"),
                         rs.getString("book_URL")
                 );
                 return innerBook;
@@ -147,12 +139,12 @@ public class BookDao {
         Gson gson = new Gson();
         String query = "SELECT * FROM books WHERE book_title = ?;";
         Book temp = this.jdbcTemplate.queryForObject(query, (rs, rowNum) -> new Book(
-                rs.getInt("ID_book"),
+                rs.getString("ID_book"),
                 rs.getString("book_title"),
-                rs.getInt("book_qty"),
+                rs.getString("book_qty"),
                 rs.getString("book_author"),
                 rs.getString("book_genre"),
-                rs.getInt("book_year"),
+                rs.getString("book_year"),
                 rs.getString("book_URL")), book_title);
         return gson.toJson(temp);
     }
@@ -169,12 +161,12 @@ public class BookDao {
 
         for (Map<String, Object> row : rows) {
             Book book = new Book(
-                    (int) (long) row.get("ID_book"),
+                    String.valueOf(row.get("ID_book")),
                     String.valueOf(row.get("book_title")),
-                    (int) (long) row.get("book_qty"),
+                    String.valueOf(row.get("book_qty")),
                     String.valueOf(row.get("book_author")),
                     String.valueOf(row.get("book_genre")),
-                    (int) (long) (row.get("book_year")),
+                    String.valueOf(row.get("book_year")),
                     String.valueOf(row.get("book_URL")));
             books.add(book);
         }
@@ -188,12 +180,13 @@ public class BookDao {
     public Book newlyAddedBook() {
         String query = "SELECT * FROM books WHERE ID_book = (SELECT MAX(ID_book) FROM books);";
         Book temp = jdbcTemplate.queryForObject(query, (rs, rowNum) -> {
-            Book book = new Book(rs.getInt("ID_book"),
+            Book book = new Book(
+                    rs.getString("ID_book"),
                     rs.getString("book_title"),
-                    rs.getInt("book_qty"),
+                    rs.getString("book_qty"),
                     rs.getString("book_author"),
                     rs.getString("book_genre"),
-                    rs.getInt("book_year"),
+                    rs.getString("book_year"),
                     rs.getString("book_URL"));
             return book;
         });

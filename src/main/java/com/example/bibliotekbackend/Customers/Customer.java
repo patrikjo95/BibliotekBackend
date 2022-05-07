@@ -2,14 +2,19 @@ package com.example.bibliotekbackend.Customers;
 
 public class Customer {
     private int ID_customers;
-    private String customer_username;
+    private String customer_pnr;
     private String customers_password;
 
 
-    public Customer(int ID_customer, String customer_username, String customer_password) {
-        this.ID_customers = ID_customer;
-        this.customer_username = customer_username;
-        this.customers_password = customer_password;
+    public Customer(int ID_customers, String customer_pnr, String customers_password) {
+        this.ID_customers = ID_customers;
+        this.customer_pnr = customer_pnr;
+        this.customers_password = customers_password;
+    }
+
+    public Customer(String customer_pnr, String customers_password) {
+        this.customer_pnr = customer_pnr;
+        this.customers_password = customers_password;
     }
 
     public int getID_customers() {
@@ -20,12 +25,12 @@ public class Customer {
         this.ID_customers = ID_customers;
     }
 
-    public String getCustomer_username() {
-        return customer_username;
+    public String getCustomer_pnr() {
+        return customer_pnr;
     }
 
-    public void setCustomer_username(String customer_username) {
-        this.customer_username = customer_username;
+    public void setCustomer_pnr(String customer_username) {
+        this.customer_pnr = customer_pnr;
     }
 
     public String getCustomers_password() {
@@ -40,7 +45,7 @@ public class Customer {
     public String toString() {
         return "Customers{" +
                 "ID_customers=" + ID_customers +
-                ", customer_username='" + customer_username + '\'' +
+                ", customer_username='" + customer_pnr + '\'' +
                 ", customers_password='" + customers_password + '\'' +
                 '}';
     }

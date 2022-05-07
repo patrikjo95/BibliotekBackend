@@ -11,6 +11,11 @@ public class Staff {
         this.staff_password = staff_password;
     }
 
+    public Staff(String staff_username, String staff_password) {
+        this.staff_username = staff_username;
+        this.staff_password = staff_password;
+    }
+
     public int getID_staff() {
         return ID_staff;
     }

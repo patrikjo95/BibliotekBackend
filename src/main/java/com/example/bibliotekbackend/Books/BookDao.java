@@ -75,7 +75,6 @@ public class BookDao {
         book.setBook_URL(book_URL);
 
         return outParameters;
-
     }
 
     /**

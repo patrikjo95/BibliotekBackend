@@ -24,6 +24,10 @@ public class BookService {
         return bookDao.insertBook(book.getBook_title(), book.getBook_qty(), book.getBook_author(), book.getBook_genre(), book.getBook_year(), book.getBook_URL());
     }
 
+
+    public Map searchBook(Book book) {
+        return bookDao.searchBook(book.getCheck_book());
+    }
     /**
      * Sends information to DAO class for updating one book.
      */

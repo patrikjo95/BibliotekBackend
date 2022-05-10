@@ -8,6 +8,7 @@ public class Book {
     private String book_genre;
     private String book_year;
     private String book_URL;
+    private String check_book;
 
     public Book(String ID_book, String book_title, String book_qty, String book_author, String book_genre, String book_year, String book_URL) {
         this.ID_book = ID_book;
@@ -26,6 +27,18 @@ public class Book {
         this.book_genre = book_genre;
         this.book_year = book_year;
         this.book_URL = book_url;
+    }
+
+    public Book(String check_book){
+        this.check_book = check_book;
+    }
+
+    public String getCheck_book() {
+        return check_book;
+    }
+
+    public void setCheck_book(String check_book) {
+        this.check_book = check_book;
     }
 
     public String getID_book() {

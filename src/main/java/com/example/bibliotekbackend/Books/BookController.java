@@ -40,6 +40,21 @@ public class BookController {
         //bookService.insertBook(book_title, book_qty, book_author, book_genre, book_year, book_URL);
     }
 
+    @GetMapping ("/searchBook")
+    public String searchBook(@RequestParam(value = "check_book") String check_book
+    ) {
+        Book book = new Book(check_book);
+
+        System.out.println("Controller" + book); // ??
+
+        Map outParameters = bookService.searchBook(book);
+
+        Gson gson = new Gson();
+
+        return gson.toJson(outParameters);
+
+        }
+
     /**
      * Sends request to update a new book in the database, specify ID
      */

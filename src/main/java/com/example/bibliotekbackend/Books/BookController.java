@@ -29,7 +29,7 @@ public class BookController {
     ) {
         Book book = new Book(book_title, book_qty, book_author, book_genre, book_year, book_URL);
 
-        System.out.println("Controller" + book); // ??
+        //System.out.println("Controller" + book);
 
         Map outParameters = bookService.insertBook(book);
 
@@ -37,7 +37,6 @@ public class BookController {
 
         return gson.toJson(outParameters);
 
-        //bookService.insertBook(book_title, book_qty, book_author, book_genre, book_year, book_URL);
     }
 
     @GetMapping ("/searchBook")
@@ -45,7 +44,7 @@ public class BookController {
     ) {
         Book book = new Book(check_book);
 
-        System.out.println("Controller" + book); // ??
+        //System.out.println("Controller" + book);
 
         Map outParameters = bookService.searchBook(book);
 

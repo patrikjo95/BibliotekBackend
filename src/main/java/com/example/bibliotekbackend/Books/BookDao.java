@@ -59,11 +59,11 @@ public class BookDao {
         inParameters.put("new_book_year" , book_year);
         inParameters.put("new_book_URL", book_URL);
 
-        System.out.println("Dao" + inParameters); // ??
+        //System.out.println("Dao" + inParameters);
 
         SqlParameterSource in = new MapSqlParameterSource(inParameters);
 
-        System.out.println("in" + in);// ??
+        //System.out.println("in" + in);
 
         Map<String, Object> outParameters = jdbcCall.execute(in);
 
@@ -86,11 +86,11 @@ public class BookDao {
 
         inParameters.put("check_book", check_book);
 
-        System.out.println("Dao" + inParameters); // ??
+        //System.out.println("Dao" + inParameters);
 
         SqlParameterSource in = new MapSqlParameterSource(inParameters);
 
-        System.out.println("in" + in);// ??
+        //System.out.println("in" + in);
 
         Map<String, Object> outParameters = jdbcCall.execute(in);
 
@@ -118,7 +118,6 @@ public class BookDao {
      * method to delete a book from database using ID
      */
     public void deleteBook(int ID_book) {
-
         String query = "DELETE FROM books WHERE ID_book = ?;";
 
         int result = jdbcTemplate.update(query, ID_book);

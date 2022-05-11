@@ -16,6 +16,9 @@ public class StaffDetailsController {
         this.staffDetailsService = staffDetailsService;
     }
 
+    /**
+     * Sends request to insert details for one staff to database
+     */
 
     @GetMapping("/insertStaffDetails")
     public String insertStaffDetails(
@@ -42,6 +45,10 @@ public class StaffDetailsController {
 
     }
 
+    /**
+     * Sends request to update a staff details in the database, specify ID
+     */
+
     @PostMapping("/updateStaffDetails")
     public void updateStaffDetails(
             @RequestParam(value = "new_staff_ID_staff", defaultValue = "0" ) int staff_ID_staff,
@@ -58,16 +65,28 @@ public class StaffDetailsController {
         staffDetailsService.updateStaffDetails(staff_ID_staff, staff_firstname, staff_lastname, staff_mail, staff_phonenumber, staff_adress, staff_city, staff_zip_code, staff_pnr);
     }
 
+    /**
+     * Sends request to delete staff details from database by ID
+     */
+
     @DeleteMapping("/deleteStaffDetails")
     public void deleteStaffDetails(
             @RequestParam(value = "staff_ID_staff", defaultValue = "-1") int staff_ID_staff) {
         staffDetailsService.deleteStaffDetails(staff_ID_staff);
     }
 
+    /**
+     * Sends request to display details about one staff from database by ID
+     */
+
     @GetMapping("/ShowStaffDetailsByID")
     public String ShowStaffDetailsByID(@RequestParam(value = "staff_ID_staff", defaultValue = "-1") int staff_ID_staff) {
         return staffDetailsService.ShowStaffDetailsByID(staff_ID_staff);
     }
+
+    /**
+     * Sends request to display all staff details from database by ID
+     */
 
     @GetMapping("/ShowAllStaffDetails")
     public String ShowAllStaffDetails() {

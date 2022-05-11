@@ -117,7 +117,8 @@ public class BookDao {
     /**
      * method to delete a book from database using ID
      */
-    public void deleteBook(int ID_book) {
+    public Map deleteBook(String ID_book) {
+        /*
         String query = "DELETE FROM books WHERE ID_book = ?;";
 
         int result = jdbcTemplate.update(query, ID_book);
@@ -126,6 +127,29 @@ public class BookDao {
             System.out.println(result + " book deleted from database");
             this.error = "book deleted from database";
         }
+
+         */
+
+        SimpleJdbcCall jdbcCall = new SimpleJdbcCall(jdbcTemplate).withProcedureName("delete_book");
+
+        Map<String, String> inParameters = new HashMap<>();
+
+        Book book = new Book(ID_book);
+
+        inParameters.put("selected_ID_book", ID_book);
+
+        //System.out.println("Dao" + inParameters);
+
+        SqlParameterSource in = new MapSqlParameterSource(inParameters);
+
+        //System.out.println("in" + in);
+
+        Map<String, Object> outParameters = jdbcCall.execute(in);
+
+        book.setCheck_book(ID_book);
+
+        return outParameters;
+
     }
 
     /**

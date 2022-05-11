@@ -73,8 +73,8 @@ public class BookController {
      * Sends request to delete a book from database by ID
      */
     @DeleteMapping("/deleteBookByID")
-    public void deleteBook(@RequestParam(value = "ID_book", defaultValue = "-1") int ID_book) {
-        bookService.deleteBook(ID_book);
+    public Map deleteBook(@RequestParam(value = "ID_book") String ID_book) {
+        return bookService.deleteBook(ID_book);
     }
 
     /**

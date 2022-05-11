@@ -16,11 +16,19 @@ import java.util.*;
 @Repository
 public class StaffDetailsDao {
 
+    /**
+     * Data access object for staff Details table in database
+     */
+
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
     ArrayList<StaffDetails> staffDetailsList;
 
+
+    /**
+    * Method to insert staff details into database
+    */
 
     public Map insertStaffDetails(String staff_firstname, String staff_lastname, String staff_mail, String staff_phonenumber, String staff_adress, String staff_city, String staff_zip_code, String staff_pnr, int staff_ID_staff) {
         SimpleJdbcCall jdbcCall = new SimpleJdbcCall(jdbcTemplate).withProcedureName("add_staffDetails");
@@ -61,6 +69,10 @@ public class StaffDetailsDao {
         return outParameters;
     }
 
+    /**
+     * Method to update staff details in database
+     **/
+
     public void updateStaffDetails(int staff_ID_staff, String staff_firstname, String staff_lastname, String staff_mail, String staff_phonenumber, String staff_adress, String staff_city, String staff_zip_code, String staff_pnr) {
 
         String query = "UPDATE staff_details SET staff_firstname = ?, staff_lastname = ?, staff_mail = ?, staff_phonenumber = ?, staff_adress = ?, staff_city = ?, staff_zip_code = ?, staff_pnr = ? WHERE staff_ID_staff = ?;";
@@ -71,6 +83,10 @@ public class StaffDetailsDao {
             System.out.println(result + " staff details updated in database");
         }
     }
+
+    /**
+     * Method to delete staff details by ID in database
+     **/
 
     public void deleteStaffDetails(int staff_ID_staff) {
 
@@ -83,6 +99,10 @@ public class StaffDetailsDao {
         }
 
     }
+
+    /**
+     * Method to display staff details by ID from database
+     **/
 
     public StaffDetails ShowStaffDetailsByID (int staff_ID_staff) {
 
@@ -106,6 +126,10 @@ public class StaffDetailsDao {
             }
         }, staff_ID_staff);
     }
+
+    /**
+     * Method to display all staff details from database
+     **/
 
     public ArrayList<StaffDetails> showAllStaffDetails() {
         String query = "SELECT * FROM staff_details;";

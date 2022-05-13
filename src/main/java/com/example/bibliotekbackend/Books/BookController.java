@@ -39,20 +39,35 @@ public class BookController {
 
     }
 
-    @GetMapping ("/searchBook")
-    public String searchBook(@RequestParam(value = "check_book") String check_book
+    @GetMapping ("/search_for_a_book_everyone")
+    public String search_for_a_book_everyone(@RequestParam(value = "check_book") String check_book
     ) {
         Book book = new Book(check_book);
 
         //System.out.println("Controller" + book);
 
-        Map outParameters = bookService.searchBook(book);
+        Map outParameters = bookService.search_for_a_book_everyone(book);
 
         Gson gson = new Gson();
 
         return gson.toJson(outParameters);
 
         }
+
+    @GetMapping ("/search_for_a_book_admin")
+    public String search_for_a_book_admin(@RequestParam(value = "check_book") String check_book
+    ) {
+        Book book = new Book(check_book);
+
+        //System.out.println("Controller" + book);
+
+        Map outParameters = bookService.search_for_a_book_admin(book);
+
+        Gson gson = new Gson();
+
+        return gson.toJson(outParameters);
+
+    }
 
     /**
      * Sends request to update a new book in the database, specify ID
@@ -72,7 +87,7 @@ public class BookController {
     /**
      * Sends request to delete a book from database by ID
      */
-    @DeleteMapping("/deleteBookByID")
+    @GetMapping("/deleteBookByID")
     public Map deleteBook(@RequestParam(value = "ID_book") String ID_book) {
         return bookService.deleteBook(ID_book);
     }

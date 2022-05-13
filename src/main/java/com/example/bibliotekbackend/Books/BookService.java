@@ -25,8 +25,12 @@ public class BookService {
     }
 
 
-    public Map searchBook(Book book) {
-        return bookDao.searchBook(book.getCheck_book());
+    public Map search_for_a_book_everyone(Book book) {
+        return bookDao.search_for_a_book_everyone(book.getCheck_book());
+    }
+
+    public Map search_for_a_book_admin(Book book) {
+        return bookDao.search_for_a_book_admin(book.getCheck_book());
     }
     /**
      * Sends information to DAO class for updating one book.

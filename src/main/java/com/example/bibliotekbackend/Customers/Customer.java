@@ -1,52 +1,52 @@
 package com.example.bibliotekbackend.Customers;
 
 public class Customer {
-    private int ID_customers;
+    private int ID_customer;
     private String customer_pnr;
-    private String customers_password;
+    private String customer_pin;
 
 
-    public Customer(int ID_customers, String customer_pnr, String customers_password) {
-        this.ID_customers = ID_customers;
+    public Customer(int ID_customer, String customer_pnr, String customer_pin) {
+        this.ID_customer = ID_customer;
         this.customer_pnr = customer_pnr;
-        this.customers_password = customers_password;
+        this.customer_pin = customer_pin;
     }
 
-    public Customer(String customer_pnr, String customers_password) {
+    public Customer(String customer_pnr, String customer_pin) {
         this.customer_pnr = customer_pnr;
-        this.customers_password = customers_password;
+        this.customer_pin = customer_pin;
     }
 
-    public int getID_customers() {
-        return ID_customers;
+    public int getID_customer() {
+        return ID_customer;
     }
 
-    public void setID_customers(int ID_customers) {
-        this.ID_customers = ID_customers;
+    public void setID_customer(int ID_customer) {
+        this.ID_customer = ID_customer;
     }
 
     public String getCustomer_pnr() {
         return customer_pnr;
     }
 
-    public void setCustomer_pnr(String customer_username) {
+    public void setCustomer_pnr(String customer_pnr) {
         this.customer_pnr = customer_pnr;
     }
 
-    public String getCustomers_password() {
-        return customers_password;
+    public String getCustomer_pin() {
+        return customer_pin;
     }
 
-    public void setCustomers_password(String customers_password) {
-        this.customers_password = customers_password;
+    public void setCustomer_pin(String customer_pin) {
+        this.customer_pin = customer_pin;
     }
 
     @Override
     public String toString() {
-        return "Customers{" +
-                "ID_customers=" + ID_customers +
-                ", customer_username='" + customer_pnr + '\'' +
-                ", customers_password='" + customers_password + '\'' +
+        return "Customer{" +
+                "ID_customer=" + ID_customer +
+                ", customer_pnr='" + customer_pnr + '\'' +
+                ", customer_pin='" + customer_pin + '\'' +
                 '}';
     }
 }

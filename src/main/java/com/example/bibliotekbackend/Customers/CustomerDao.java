@@ -1,7 +1,6 @@
 package com.example.bibliotekbackend.Customers;
 
 
-import com.example.bibliotekbackend.Books.Book;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -34,22 +33,22 @@ public class CustomerDao {
     /**
      * method to insert a new customer into the database
      */
-    public Map instertCustomer(String customer_pnr, String customers_password){
-        SimpleJdbcCall jdbcCall = new SimpleJdbcCall(jdbcTemplate).withProcedureName("add customer");
+    public Map add_customer(String customer_pnr, String customer_pin){
+        SimpleJdbcCall jdbcCall = new SimpleJdbcCall(jdbcTemplate).withProcedureName("add_customer");
 
     Map<String, String> inParameters = new HashMap<>();
 
-    Customer customer = new Customer(customer_pnr, customers_password);
+    Customer customer = new Customer(customer_pnr, customer_pin);
 
-    inParameters.put("new_customer_pnr", customer_pnr);
-    inParameters.put("new_customers_password",customers_password);
+    inParameters.put("pnr", customer_pnr);
+    inParameters.put("pin",customer_pin);
 
     SqlParameterSource in = new MapSqlParameterSource(inParameters);
 
     Map<String, Object> outParameters = jdbcCall.execute(in);
 
     customer.setCustomer_pnr(customer_pnr);
-    customer.setCustomers_password(customers_password);
+    customer.setCustomer_pin(customer_pin);
 
     return outParameters;
 }
@@ -58,9 +57,9 @@ public class CustomerDao {
      * updates a customer in database by ID
      */
 
-    public void updateCustomer(int ID_customers, String customer_pnr, String customers_password) {
-        String query = "UPDATE customers SET customer_pnr = ?, customers_password = ? WHERE ID_customer = ?;";
-        int result = jdbcTemplate.update(query,customer_pnr, customers_password, ID_customers);
+    public void updateCustomer(int ID_customer, String customer_pnr, String customer_pin) {
+        String query = "UPDATE customer SET customer_pnr = ?, customer_pin = ? WHERE ID_customer = ?;";
+        int result = jdbcTemplate.update(query,customer_pnr, customer_pin, ID_customer);
 
         if (result > 0) {
             System.out.println(result + "customer updated in database");
@@ -73,7 +72,7 @@ public class CustomerDao {
      */
 
     public void deleteCustomer(int ID_customer) {
-        String query = "DELETE FROM customers WHERE ID_customer = ?;";
+        String query = "DELETE FROM customer WHERE ID_customer = ?;";
         int result = jdbcTemplate.update(query, ID_customer);
 
         if (result > 0) {
@@ -95,14 +94,14 @@ public class CustomerDao {
         return this.jdbcTemplate.queryForObject(query, new RowMapper<Customer>() {
             @Override
             public Customer mapRow(ResultSet rs, int rowNum) throws SQLException {
-                Customer innerCUstomer = new Customer(
+                Customer customer = new Customer(
                         rs.getInt("ID_customer"),
                         rs.getString("customer_pnr"),
-                        rs.getString("customers_password")
+                        rs.getString("customer_pin")
 
 
                 );
-                return innerCUstomer;
+                return customer;
             }
         }, ID_customer);
 

@@ -18,27 +18,6 @@ public class AdminService {
     ArrayList<Admin> adminList;
 
     /**
-     * Sends information to DAO class for inserting one new admin.
-     */
-    public Map insertAdmin(Admin admin) {
-        return adminDao.insertAdmin(admin.getAdmin_username(), admin.getAdmin_password());
-    }
-
-    /**
-     * Sends information to DAO class for updating one admin.
-     */
-    public void updateAdmin(int ID_admin, String admin_username, String admin_password) {
-        adminDao.updateAdmin(ID_admin, admin_username, admin_password);
-    }
-
-    /**
-     * Sends information to DAO class for deleting one admin using ID_admin
-     */
-    public void deleteAdmin(int ID_admin) {
-        adminDao.deleteAdmin(ID_admin);
-    }
-
-    /**
      * @param ID_admin
      * @return gson String regarding info about one admin, based on ID, sends it to DAO class.
      */

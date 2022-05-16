@@ -21,16 +21,16 @@ public class CustomerService {
      * Sends information to DAO class for inserting one new customer.
      */
 
-    public Map insertCustomer(Customer customer) {
+    public Map add_customer(Customer customer) {
 
-        return customerDao.instertCustomer(customer.getCustomer_pnr(), customer.getCustomers_password());
+        return customerDao.add_customer(customer.getCustomer_pnr(), customer.getCustomer_pin());
 
         /**
          * Sends information to DAO class for updating one customer.
          */
     }
-        public void updateCustomer(int ID_customers, String customer_pnr, String customers_password){
-            customerDao.updateCustomer(ID_customers, customer_pnr, customers_password);
+        public void updateCustomer(int ID_customer, String customer_pnr, String customer_pin){
+            customerDao.updateCustomer(ID_customer, customer_pnr, customer_pin);
         }
 
 

@@ -13,24 +13,24 @@ public class CustomerController {
     @Autowired
     CustomerService customerService;
 
-    public CustomerController(CustomerService customerService){this.customerService = customerService;}
+    public CustomerController(CustomerService customerService){
+        this.customerService = customerService;
+    }
     /**
      * Sends request to insert a new customer to database
      */
 
-    @GetMapping ("/insertCustomer")
-    public String insertCustomer (@RequestParam(value ="new customer_pnr")String customer_pnr,
-                                  @RequestParam(value = "new customers_password") String customers_password,
-                                  @RequestParam(value = "new ID_customers") int ID_customers
-    )
+    @GetMapping ("/add_customer")
+    public String add_customer(@RequestParam(value ="pnr")String customer_pnr,
+                                @RequestParam(value = "pin") String customer_pin)
     {
-        Customer customer = new Customer(ID_customers,customer_pnr,customers_password);
+        Customer customer = new Customer(customer_pnr,customer_pin);
 
-        Map outParameters = customerService.insertCustomer(customer);
+        Map outParameters = customerService.add_customer(customer);
 
         Gson gson = new Gson();
+
         return gson.toJson(outParameters);
-        //customerService.insertCustomer(customer_pnr, customers_password, ID_customers);
 
 
     }
@@ -39,11 +39,11 @@ public class CustomerController {
      */
 
     @PostMapping("/updateCustomer")
-    public void updateCustomer(@RequestParam(value = "ID_customers", defaultValue = "0")int ID_customers,
+    public void updateCustomer(@RequestParam(value = "ID_customer", defaultValue = "0")int ID_customer,
                                @RequestParam(value = "customer_pnr") String customer_pnr,
-                               @RequestParam(value = "customers_password") String customers_password
+                               @RequestParam(value = "customers_pin") String customer_pin
     ) {
-        customerService.updateCustomer(ID_customers, customer_pnr, customers_password);
+        customerService.updateCustomer(ID_customer, customer_pnr, customer_pin);
     }
 
 
@@ -59,8 +59,8 @@ public class CustomerController {
      * Sends request to download one customer from database by ID
      */
     @GetMapping("/downloadOneCustomer")
-    public String downloadOneCustomer(@RequestParam(value = "ID_customers", defaultValue = "-1")int ID_customers){
-return customerService.downloadOneCustomer(ID_customers);
+    public String downloadOneCustomer(@RequestParam(value = "ID_customer", defaultValue = "-1")int ID_customer){
+return customerService.downloadOneCustomer(ID_customer);
 
     }
 

@@ -2,6 +2,7 @@ package com.example.bibliotekbackend.Books;
 
 public class Book {
     private String ID_book;
+    private String ISBN_book;
     private String book_title;
     private String book_qty;
     private String book_author;

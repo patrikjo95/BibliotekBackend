@@ -38,7 +38,7 @@ public class BookService {
     /**
      * Sends information to DAO class for deleting one book using ID_book
      */
-    public Map deleteBook(String ID_book) {
+    public Map deleteBook(String ID_book) { //erkan säger att det ska vara int här, eftersom det är int i databasen, allt eftersom "" tecknet förstör
         return bookDao.deleteBook(ID_book);
     }
 

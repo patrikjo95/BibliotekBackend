@@ -72,7 +72,7 @@ public class BookController {
     /**
      * Sends request to delete a book from database by ID
      */
-    @DeleteMapping("/deleteBookByID")
+    @GetMapping("/deleteBookByID")
     public Map deleteBook(@RequestParam(value = "ID_book") String ID_book) {
         return bookService.deleteBook(ID_book);
     }

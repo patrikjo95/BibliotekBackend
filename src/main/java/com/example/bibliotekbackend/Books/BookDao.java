@@ -59,11 +59,11 @@ public class BookDao {
         inParameters.put("new_book_year" , book_year);
         inParameters.put("new_book_URL", book_URL);
 
-        //System.out.println("Dao" + inParameters);
+        System.out.println("Dao" + inParameters);
 
         SqlParameterSource in = new MapSqlParameterSource(inParameters);
 
-        //System.out.println("in" + in);
+        System.out.println("in" + in);
 
         Map<String, Object> outParameters = jdbcCall.execute(in);
 

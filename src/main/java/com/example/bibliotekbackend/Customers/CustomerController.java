@@ -1,6 +1,7 @@
 package com.example.bibliotekbackend.Customers;
 
 
+import com.example.bibliotekbackend.Books.Book;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -41,7 +42,7 @@ public class CustomerController {
     @PostMapping("/updateCustomer")
     public void updateCustomer(@RequestParam(value = "ID_customer", defaultValue = "0")int ID_customer,
                                @RequestParam(value = "customer_pnr") String customer_pnr,
-                               @RequestParam(value = "customers_pin") String customer_pin
+                               @RequestParam(value = "customer_pin") String customer_pin
     ) {
         customerService.updateCustomer(ID_customer, customer_pnr, customer_pin);
     }
@@ -51,8 +52,8 @@ public class CustomerController {
      * Sends request to delete a customer from database by ID
      */
     @DeleteMapping("/deleteCustomerByID")
-    public void deleteCustomer(@RequestParam(value = "ID_customers", defaultValue = "-1")int ID_customers) {
-        customerService.deleteCustomer(ID_customers);
+    public void deleteCustomer(@RequestParam(value = "ID_customer", defaultValue = "-1")int ID_customer) {
+        customerService.deleteCustomer(ID_customer);
     }
 
     /**
@@ -75,6 +76,24 @@ return customerService.downloadOneCustomer(ID_customer);
     @GetMapping("/downloadCustomerByUsername")
     public String downloadCustomerByUsername(@RequestParam(value = "customer_pnr", defaultValue = "noCustomer_pnr")String customer_pnr) {
         return customerService.downloadCustomerByUsername(customer_pnr);
+    }
+
+    @GetMapping("/login_customer")
+    public String login_customer(@RequestParam(value = "test_pnr") String customer_pnr,
+                              @RequestParam(value = "test_pin") String customer_pin) {
+
+        Customer customer = new Customer(customer_pnr, customer_pin);
+
+        System.out.println("Controller" + customer);
+
+        Map outParameters = customerService.login_customer(customer);
+
+        Gson gson = new Gson();
+
+        return gson.toJson(outParameters);
+
+
+        // return customerService.login_Customer(customer_pnr, customer_pin);
     }
 
 

@@ -1,6 +1,8 @@
 package com.example.bibliotekbackend.Customers;
 
 
+import com.example.bibliotekbackend.AdminDetails.AdminDetails;
+import com.example.bibliotekbackend.Books.Book;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -161,6 +163,32 @@ public class CustomerDao {
 
         }
 
+        public Map login_customer(String customer_pnr, String customer_pin) {
+            SimpleJdbcCall jdbcCall = new SimpleJdbcCall(jdbcTemplate).withProcedureName("login_customer");
+
+            Map<String, String> inParameters = new HashMap<>();
+
+            Customer customer = new Customer(customer_pnr, customer_pin);
+
+            inParameters.put("test_pnr", customer_pnr);
+            inParameters.put("test_pin", customer_pin);
+
+            System.out.println("Dao" + inParameters);
+
+            SqlParameterSource in = new MapSqlParameterSource(inParameters);
+            System.out.println("in" + in);
+            //System.out.println(in);
+            System.out.println(jdbcCall.execute(in));
+            //System.out.println(outParameters);
+
+            Map<String, Object> outParameters = jdbcCall.execute(in);
+
+
+            customer.setCustomer_pnr(customer_pnr);
+            customer.setCustomer_pin(customer_pin);
+
+            return outParameters;
+        }
 
 
     }

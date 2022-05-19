@@ -29,17 +29,17 @@ public class CustomerService {
          * Sends information to DAO class for updating one customer.
          */
     }
-        public void updateCustomer(int ID_customer, String customer_pnr, String customer_pin){
-            customerDao.updateCustomer(ID_customer, customer_pnr, customer_pin);
-        }
 
+    public void updateCustomer(int ID_customer, String customer_pnr, String customer_pin) {
+        customerDao.updateCustomer(ID_customer, customer_pnr, customer_pin);
+    }
 
 
     /**
      * Sends information to DAO class for deleting one customer using ID_book
      */
 
-    public void deleteCustomer(int ID_customers){
+    public void deleteCustomer(int ID_customers) {
         customerDao.deleteCustomer(ID_customers);
     }
 
@@ -56,7 +56,9 @@ public class CustomerService {
         return customerString;
     }
 
-    public String downloadCustomerByUsername(String customer_username) { return customerDao.downloadCustomerByUsername(customer_username);}
+    public String downloadCustomerByUsername(String customer_username) {
+        return customerDao.downloadCustomerByUsername(customer_username);
+    }
 
     /**
      * @return gson String with information regarding all customers, sends it to DAO class.
@@ -71,7 +73,6 @@ public class CustomerService {
     }
 
 
-
     /**
      * assigns to 'book' object, the book with highest ID, by using the newlyAddedBook() method, then...
      * returns a gson String with information regarding this most recently added book to the DAO class.
@@ -80,15 +81,17 @@ public class CustomerService {
      */
 
 
-
-
-
-   // public void deleteCustomer(int id_customers) {
+    // public void deleteCustomer(int id_customers) {
 
 
     //public void updateCustomer(int id_customers, String customer_username, String customer_password) {
-    }
 
-    //public Map insertCustomer(Customer customer) {
+    //public Map login_Customer(String customer_pnr, String customer_pin) {
+    public Map login_customer(Customer customer) {
+        return customerDao.login_customer(customer.getCustomer_pnr(), customer.getCustomer_pin());
+    }
+}
+
+//public Map insertCustomer(Customer customer) {
 
 

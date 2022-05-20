@@ -1,4 +1,4 @@
-package com.example.bibliotekbackend.Customers;
+package com.example.bibliotekbackend.Customer;
 
 
 import com.google.gson.Gson;

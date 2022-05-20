@@ -89,7 +89,7 @@ public class CustomerDao {
      * gets one customer from the database by id
      */
 
-    public Customer downloadOneCustomerByID( int ID_customer) {
+/*    public Customer downloadOneCustomerByID( int ID_customer) {
 
         String query ="SELECT * FROM Customer WHERE ID_customer =?;";
 
@@ -108,13 +108,13 @@ public class CustomerDao {
         }, ID_customer);
 
 
-    }
+    }*/
 
     /**
      * gets one customer from the database by username
      */
 
-    public String downloadCustomerByUsername(String customer_pnr) {
+/*    public String downloadCustomerByUsername(String customer_pnr) {
 
         Gson gson = new Gson();
 
@@ -124,7 +124,7 @@ public class CustomerDao {
                 rs.getString("customer_pnr"),
                 rs.getString("customers_password")),customer_pnr);
         return gson.toJson(temp);
-    }
+    }*/
 
     /**
      * downloads all customers from the database
@@ -168,8 +168,6 @@ public class CustomerDao {
 
             Map<String, String> inParameters = new HashMap<>();
 
-            Customer customer = new Customer(customer_pnr, customer_pin);
-
             inParameters.put("test_pnr", customer_pnr);
             inParameters.put("test_pin", customer_pin);
 
@@ -177,17 +175,18 @@ public class CustomerDao {
 
             SqlParameterSource in = new MapSqlParameterSource(inParameters);
             System.out.println("in" + in);
-            //System.out.println(in);
-            System.out.println(jdbcCall.execute(in));
-            //System.out.println(outParameters);
 
             Map<String, Object> outParameters = jdbcCall.execute(in);
 
+            jdbcCall.execute(in);
 
-            customer.setCustomer_pnr(customer_pnr);
-            customer.setCustomer_pin(customer_pin);
+            //System.out.println(jdbcCall.execute(in));
+
+            //customer.setCustomer_pnr(customer_pnr);
+            //customer.setCustomer_pin(customer_pin);
 
             return outParameters;
+
         }
 
 

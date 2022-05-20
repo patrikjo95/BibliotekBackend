@@ -59,11 +59,11 @@ public class CustomerController {
     /**
      * Sends request to download one customer from database by ID
      */
-    @GetMapping("/downloadOneCustomer")
+/*    @GetMapping("/downloadOneCustomer")
     public String downloadOneCustomer(@RequestParam(value = "ID_customer", defaultValue = "-1")int ID_customer){
 return customerService.downloadOneCustomer(ID_customer);
 
-    }
+    }*/
 
 
     /**
@@ -73,10 +73,10 @@ return customerService.downloadOneCustomer(ID_customer);
     public String downloadAllCustomers() {return customerService.downloadAllCustomers();
     }
 
-    @GetMapping("/downloadCustomerByUsername")
+/*    @GetMapping("/downloadCustomerByUsername")
     public String downloadCustomerByUsername(@RequestParam(value = "customer_pnr", defaultValue = "noCustomer_pnr")String customer_pnr) {
         return customerService.downloadCustomerByUsername(customer_pnr);
-    }
+    }*/
 
     @GetMapping("/login_customer")
     public String login_customer(@RequestParam(value = "test_pnr") String customer_pnr,
@@ -92,8 +92,6 @@ return customerService.downloadOneCustomer(ID_customer);
 
         return gson.toJson(outParameters);
 
-
-        // return customerService.login_Customer(customer_pnr, customer_pin);
     }
 
 

@@ -1,4 +1,4 @@
-package com.example.bibliotekbackend.Customers;
+package com.example.bibliotekbackend.Customer;
 
 public class Customer {
     private int ID_customer;

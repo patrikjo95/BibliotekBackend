@@ -48,6 +48,7 @@ public class CustomerService {
      * @return gson String regarding info about one customer, based on ID, sends it to DAO class.
      */
 
+    /*
     public String downloadOneCustomer(int ID_customer) {
 
         Gson gson = new Gson();
@@ -59,6 +60,8 @@ public class CustomerService {
     public String downloadCustomerByUsername(String customer_username) {
         return customerDao.downloadCustomerByUsername(customer_username);
     }
+    
+     */
 
     /**
      * @return gson String with information regarding all customers, sends it to DAO class.

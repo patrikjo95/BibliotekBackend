@@ -89,6 +89,7 @@ public class CustomerDao {
      * gets one customer from the database by id
      */
 
+    /*
     public Customer downloadOneCustomerByID( int ID_customer) {
 
         String query ="SELECT * FROM Customer WHERE ID_customer =?;";
@@ -110,10 +111,13 @@ public class CustomerDao {
 
     }
 
+     */
+
     /**
      * gets one customer from the database by username
      */
 
+    /*
     public String downloadCustomerByUsername(String customer_pnr) {
 
         Gson gson = new Gson();
@@ -125,6 +129,8 @@ public class CustomerDao {
                 rs.getString("customers_password")),customer_pnr);
         return gson.toJson(temp);
     }
+
+     */
 
     /**
      * downloads all customers from the database

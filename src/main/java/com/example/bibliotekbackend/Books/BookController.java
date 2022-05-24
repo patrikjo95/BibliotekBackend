@@ -69,6 +69,21 @@ public class BookController {
 
     }
 
+    @GetMapping ("/search_for_a_book_borrow")
+    public String search_for_a_book_borrow(@RequestParam(value = "check_book") String check_book
+    ) {
+        Book book = new Book(check_book);
+
+        System.out.println("Controller" + book);
+
+        Map outParameters = bookService.search_for_a_book_borrow(book);
+
+        Gson gson = new Gson();
+
+        return gson.toJson(outParameters);
+
+    }
+
     /**
      * Sends request to update a new book in the database, specify ID
      */

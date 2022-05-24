@@ -122,6 +122,28 @@ public class BookDao {
         return outParameters;
     }
 
+    public Map search_for_a_book_borrow(String check_book) {
+        SimpleJdbcCall jdbcCall = new SimpleJdbcCall(jdbcTemplate).withProcedureName("search_for_a_book_borrow");
+
+        Map<String, String> inParameters = new HashMap<>();
+
+        Book book = new Book(check_book);
+
+        inParameters.put("check_book", check_book);
+
+        System.out.println("Dao" + inParameters);
+
+        SqlParameterSource in = new MapSqlParameterSource(inParameters);
+
+        System.out.println("in" + in);
+
+        Map<String, Object> outParameters = jdbcCall.execute(in);
+
+        book.setCheck_book(check_book);
+
+        return outParameters;
+    }
+
     /**
      * updates a book in database by ID
      */

@@ -93,6 +93,10 @@ public class CustomerService {
     public Map login_customer(Customer customer) {
         return customerDao.login_customer(customer.getCustomer_pnr(), customer.getCustomer_pin());
     }
+
+    public Map borrow_book(Customer customer) {
+        return customerDao.borrow_book(customer.getCustomer_pnr(), customer.getISBN_book_live());
+    }
 }
 
 //public Map insertCustomer(Customer customer) {

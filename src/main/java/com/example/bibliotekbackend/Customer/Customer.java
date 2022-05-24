@@ -5,6 +5,16 @@ public class Customer {
     private String customer_pnr;
     private String customer_pin;
 
+    public int getISBN_book_live() {
+        return ISBN_book_live;
+    }
+
+    public void setISBN_book_live(int ISBN_book_live) {
+        this.ISBN_book_live = ISBN_book_live;
+    }
+
+    private int ISBN_book_live;
+
 
     /*
     public Customer(int ID_customer, String customer_pnr, String customer_pin) {
@@ -18,6 +28,11 @@ public class Customer {
     public Customer(String customer_pnr, String customer_pin) {
         this.customer_pnr = customer_pnr;
         this.customer_pin = customer_pin;
+    }
+
+    public Customer(String customer_pnr_live, int ISBN_book_live) {
+        this.customer_pnr = customer_pnr_live;
+        this.ISBN_book_live = ISBN_book_live;
     }
 
     /*

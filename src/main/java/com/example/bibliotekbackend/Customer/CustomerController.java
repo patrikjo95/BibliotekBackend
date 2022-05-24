@@ -13,18 +13,18 @@ public class CustomerController {
     @Autowired
     CustomerService customerService;
 
-    public CustomerController(CustomerService customerService){
+    public CustomerController(CustomerService customerService) {
         this.customerService = customerService;
     }
+
     /**
      * Sends request to insert a new customer to database
      */
 
-    @GetMapping ("/add_customer")
-    public String add_customer(@RequestParam(value ="pnr")String customer_pnr,
-                                @RequestParam(value = "pin") String customer_pin)
-    {
-        Customer customer = new Customer(customer_pnr,customer_pin);
+    @GetMapping("/add_customer")
+    public String add_customer(@RequestParam(value = "pnr") String customer_pnr,
+                               @RequestParam(value = "pin") String customer_pin) {
+        Customer customer = new Customer(customer_pnr, customer_pin);
 
         Map outParameters = customerService.add_customer(customer);
 
@@ -34,12 +34,13 @@ public class CustomerController {
 
 
     }
+
     /**
      * Sends request to update a new customer in the database, specify ID
      */
 
     @PostMapping("/updateCustomer")
-    public void updateCustomer(@RequestParam(value = "ID_customer", defaultValue = "0")int ID_customer,
+    public void updateCustomer(@RequestParam(value = "ID_customer", defaultValue = "0") int ID_customer,
                                @RequestParam(value = "customer_pnr") String customer_pnr,
                                @RequestParam(value = "customer_pin") String customer_pin
     ) {
@@ -51,7 +52,7 @@ public class CustomerController {
      * Sends request to delete a customer from database by ID
      */
     @DeleteMapping("/deleteCustomerByID")
-    public void deleteCustomer(@RequestParam(value = "ID_customer", defaultValue = "-1")int ID_customer) {
+    public void deleteCustomer(@RequestParam(value = "ID_customer", defaultValue = "-1") int ID_customer) {
         customerService.deleteCustomer(ID_customer);
     }
 
@@ -72,7 +73,8 @@ return customerService.downloadOneCustomer(ID_customer);
      * Sends request to download all customers from database by ID
      */
     @GetMapping("/downloadAllCustomers")
-    public String downloadAllCustomers() {return customerService.downloadAllCustomers();
+    public String downloadAllCustomers() {
+        return customerService.downloadAllCustomers();
     }
 
     /*
@@ -85,11 +87,11 @@ return customerService.downloadOneCustomer(ID_customer);
 
     @GetMapping("/login_customer")
     public String login_customer(@RequestParam(value = "test_pnr") String customer_pnr,
-                              @RequestParam(value = "test_pin") String customer_pin) {
+                                 @RequestParam(value = "test_pin") String customer_pin) {
 
         Customer customer = new Customer(customer_pnr, customer_pin);
 
-        System.out.println("Controller" + customer);
+        System.out.println("Controller " + customer);
 
         Map outParameters = customerService.login_customer(customer);
 
@@ -101,5 +103,18 @@ return customerService.downloadOneCustomer(ID_customer);
         // return customerService.login_Customer(customer_pnr, customer_pin);
     }
 
+    @GetMapping("/borrow_book")
+    public String borrow_book(@RequestParam(value = "customer_pnr_live") String customer_prn,
+                              @RequestParam(value = "ISBN_book_live") String ISBN_book_live) {
+        Customer customer = new Customer(customer_prn, ISBN_book_live);
+
+        System.out.println("Controller " + customer);
+
+        Map outParameters = customerService.borrow_book(customer);
+
+        Gson gson = new Gson();
+
+        return gson.toJson(outParameters);
+    }
 
 }

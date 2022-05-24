@@ -1,17 +1,50 @@
 package com.example.bibliotekbackend.Customer;
 
 public class Customer {
-
+    // private int ID_customer;
     private String customer_pnr;
     private String customer_pin;
 
+    public int getISBN_book_live() {
+        return ISBN_book_live;
+    }
 
+    public void setISBN_book_live(int ISBN_book_live) {
+        this.ISBN_book_live = ISBN_book_live;
+    }
+
+    private int ISBN_book_live;
+
+
+    /*
+    public Customer(int ID_customer, String customer_pnr, String customer_pin) {
+        this.ID_customer = ID_customer;
+        this.customer_pnr = customer_pnr;
+        this.customer_pin = customer_pin;
+    }
+
+     */
 
     public Customer(String customer_pnr, String customer_pin) {
         this.customer_pnr = customer_pnr;
         this.customer_pin = customer_pin;
     }
 
+    public Customer(String customer_pnr_live, int ISBN_book_live) {
+        this.customer_pnr = customer_pnr_live;
+        this.ISBN_book_live = ISBN_book_live;
+    }
+
+    /*
+    public int getID_customer() {
+        return ID_customer;
+    }
+
+    public void setID_customer(int ID_customer) {
+        this.ID_customer = ID_customer;
+    }
+
+     */
 
     public String getCustomer_pnr() {
         return customer_pnr;
@@ -32,6 +65,7 @@ public class Customer {
     @Override
     public String toString() {
         return "Customer{" +
+                //"ID_customer=" + ID_customer +
                 "customer_pnr='" + customer_pnr + '\'' +
                 ", customer_pin='" + customer_pin + '\'' +
                 '}';

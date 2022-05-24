@@ -48,17 +48,20 @@ public class CustomerService {
      * @return gson String regarding info about one customer, based on ID, sends it to DAO class.
      */
 
-/*    public String downloadOneCustomer(int ID_customer) {
+    /*
+    public String downloadOneCustomer(int ID_customer) {
 
         Gson gson = new Gson();
         customer = customerDao.downloadOneCustomerByID(ID_customer);
         String customerString = gson.toJson(customer);
         return customerString;
-    }*/
+    }
 
-/*    public String downloadCustomerByUsername(String customer_username) {
+    public String downloadCustomerByUsername(String customer_username) {
         return customerDao.downloadCustomerByUsername(customer_username);
-    }*/
+    }
+    
+     */
 
     /**
      * @return gson String with information regarding all customers, sends it to DAO class.
@@ -89,6 +92,10 @@ public class CustomerService {
     //public Map login_Customer(String customer_pnr, String customer_pin) {
     public Map login_customer(Customer customer) {
         return customerDao.login_customer(customer.getCustomer_pnr(), customer.getCustomer_pin());
+    }
+
+    public Map borrow_book(Customer customer) {
+        return customerDao.borrow_book(customer.getCustomer_pnr(), customer.getISBN_book_live());
     }
 }
 

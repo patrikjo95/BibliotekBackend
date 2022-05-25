@@ -15,6 +15,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 
+import static com.example.bibliotekbackend.Customer.Customer.createCustomer;
+
 /**
  * Data access object for customer table in database
  */
@@ -196,6 +198,7 @@ public class CustomerDao {
         return outParameters;
     }
 
+    /*
     public Map borrow_book(String customer_pnr_live, int ISBN_book_live) {
         SimpleJdbcCall jdbcCall = new SimpleJdbcCall(jdbcTemplate).withProcedureName("borrow_book");
 
@@ -218,6 +221,36 @@ public class CustomerDao {
 
         customer.setCustomer_pnr(customer_pnr_live);
         customer.setCustomer_pin(String.valueOf(ISBN_book_live));
+
+        return outParameters;
+    }
+     */
+
+    public Map borrow_book(String customer_pnr, String ISBN_book) {
+        SimpleJdbcCall jdbcCall = new SimpleJdbcCall(jdbcTemplate).withProcedureName("borrow_book");
+
+        Map<String, String> inParameters = new HashMap<>();
+
+        // Customer customer = new Customer(customer_pnr_live, ISBN_book_live);
+        // Customer customer = createCustomer(customer_pnr, null, ISBN_book);
+
+        inParameters.put("customer_pnr_live", customer_pnr);
+        inParameters.put("ISBN_book_live", ISBN_book);
+
+        System.out.println("Dao" + inParameters);
+
+        SqlParameterSource in = new MapSqlParameterSource(inParameters);
+        System.out.println("in" + in);
+
+        // Denna s.out executed borrow_book 2 gånger
+        // System.out.println(jdbcCall.execute(in));
+
+
+        Map<String, Object> outParameters = jdbcCall.execute(in);
+        System.out.println(outParameters);
+
+        //customer.setCustomer_pnr(customer_pnr);
+        //customer.setCustomer_pin(ISBN_book);
 
         return outParameters;
     }

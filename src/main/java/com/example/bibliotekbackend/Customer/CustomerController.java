@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
+import static com.example.bibliotekbackend.Customer.Customer.createCustomer;
+
 @RestController
 public class CustomerController {
 
@@ -104,9 +106,10 @@ return customerService.downloadOneCustomer(ID_customer);
     }
 
     @GetMapping("/borrow_book")
-    public String borrow_book(@RequestParam(value = "customer_pnr_live") String customer_prn,
-                              @RequestParam(value = "ISBN_book_live") String ISBN_book_live) {
-        Customer customer = new Customer(customer_prn, ISBN_book_live);
+    public String borrow_book(@RequestParam(value = "customer_pnr_live") String customer_pnr,
+                              @RequestParam(value = "ISBN_book_live") String ISBN_book) {
+        //Customer customer = new Customer(customer_pnr, ISBN_book);
+        Customer customer = createCustomer(customer_pnr, null, ISBN_book);
 
         System.out.println("Controller " + customer);
 

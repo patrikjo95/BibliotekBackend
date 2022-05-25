@@ -95,7 +95,7 @@ public class CustomerService {
     }
 
     public Map borrow_book(Customer customer) {
-        return customerDao.borrow_book(customer.getCustomer_pnr(), customer.getISBN_book_live());
+        return customerDao.borrow_book(customer.getCustomer_pnr(), customer.getISBN_book());
     }
 }
 

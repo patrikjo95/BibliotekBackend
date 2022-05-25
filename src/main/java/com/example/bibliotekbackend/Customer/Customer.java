@@ -5,15 +5,15 @@ public class Customer {
     private String customer_pnr;
     private String customer_pin;
 
-    public int getISBN_book_live() {
-        return ISBN_book_live;
+    public String getISBN_book() {
+        return ISBN_book;
     }
 
-    public void setISBN_book_live(int ISBN_book_live) {
-        this.ISBN_book_live = ISBN_book_live;
+    public void setISBN_book(String ISBN_book) {
+        this.ISBN_book = ISBN_book;
     }
 
-    private int ISBN_book_live;
+    private String ISBN_book;
 
 
     /*
@@ -30,10 +30,28 @@ public class Customer {
         this.customer_pin = customer_pin;
     }
 
-    public Customer(String customer_pnr_live, int ISBN_book_live) {
+    public Customer(String customer_pnr, String customer_pin, String ISBN_book) {
+        this.customer_pnr = customer_pnr;
+        this.customer_pin = customer_pin;
+        this.ISBN_book = ISBN_book;
+    }
+
+
+    /*
+    public Customer(String customer_pnr_live, String ISBN_book_live) {
         this.customer_pnr = customer_pnr_live;
         this.ISBN_book_live = ISBN_book_live;
     }
+     */
+
+
+    public static Customer createCustomer(String customer_pnr, String customer_pin, String ISBN_book) {
+        customer_pnr = customer_pnr;
+        customer_pin = customer_pin;
+        ISBN_book = ISBN_book;
+        return new Customer(customer_pnr, customer_pin, ISBN_book);
+    }
+
 
     /*
     public int getID_customer() {

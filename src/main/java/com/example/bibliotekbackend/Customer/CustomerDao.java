@@ -255,6 +255,24 @@ public class CustomerDao {
         return outParameters;
     }
 
+    public Map which_books_are_borrowed(String customer_pnr_live) {
+        SimpleJdbcCall simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate).withProcedureName("which_books_are_borrowed");
+
+        Map<String, String> inParameters = new HashMap<>();
+
+        inParameters.put("customer_pnr_live", customer_pnr_live);
+
+        System.out.println("Dao" + inParameters);
+
+        SqlParameterSource in = new MapSqlParameterSource(inParameters);
+        System.out.println("in" + in);
+
+        Map<String, Object> outParameters = simpleJdbcCall.execute(in);
+        System.out.println(outParameters);
+
+        return outParameters;
+    }
+
 }
 
 

@@ -281,4 +281,24 @@ public class BookDao {
         });
         return temp;
     }
+
+    public Map return_book(String book_id) {
+        System.out.println("Toros" + book_id);
+        SimpleJdbcCall simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate).withProcedureName("return_book");
+
+        Map<String, String> inParameters = new HashMap<>();
+
+        inParameters.put("book_id", book_id);
+
+        System.out.println("Dao" + inParameters);
+
+        SqlParameterSource in = new MapSqlParameterSource(inParameters);
+        System.out.println("in" + in);
+
+        Map<String, Object> outParameters = simpleJdbcCall.execute(in);
+        System.out.println(outParameters);
+
+        System.out.println("Toros" + book_id);
+        return outParameters;
+    }
 }

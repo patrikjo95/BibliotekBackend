@@ -1,5 +1,6 @@
 package com.example.bibliotekbackend.Books;
 
+import com.example.bibliotekbackend.Customer.Customer;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -135,5 +136,20 @@ public class BookController {
     @GetMapping("/downloadMostRecentBook")
     public String downloadMostRecent() {
         return bookService.downloadMostRecentBook();
+    }
+
+    @GetMapping("/return_book")
+    public String return_book(@RequestParam(value = "book_id") String book_id) {
+        System.out.println("Toros" + book_id);
+        Book book = new Book(book_id, null, null, null, null,null, null);
+
+        System.out.println("Controller " + book);
+
+        Map outParameters = bookService.return_book(book);
+
+        Gson gson = new Gson();
+        System.out.println("Toros" + book_id);
+        return gson.toJson(outParameters);
+
     }
 }

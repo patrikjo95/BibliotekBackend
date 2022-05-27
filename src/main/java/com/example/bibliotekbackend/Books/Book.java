@@ -33,7 +33,19 @@ public class Book {
         this.check_book = check_book;
     }
 
-    // public Book()
+    /*
+    public Book(String ID_book) {
+        this.ID_book = ID_book;
+    }
+     */
+
+    // skapa eller använd konstruktor som tillåter oss enbart ändra ID_book medan allt annat sätts tiill null!
+    public static Book createBookWithOnlyID(String ID_book) {
+        // Book book = new Book();
+        // book.b
+        //this.ID_book = ID_book;
+        return new Book(ID_book);
+    }
 
     public String getCheck_book() {
         return check_book;

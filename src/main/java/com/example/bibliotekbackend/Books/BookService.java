@@ -1,5 +1,6 @@
 package com.example.bibliotekbackend.Books;
 
+import com.example.bibliotekbackend.Customer.Customer;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -87,5 +88,10 @@ public class BookService {
         book = bookDao.newlyAddedBook();
         Gson gson = new Gson();
         return gson.toJson(book);
+    }
+
+    public Map return_book(Book book) {
+        System.out.println("Toros" + book);
+        return bookDao.return_book(book.getID_book());
     }
 }

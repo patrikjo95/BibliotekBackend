@@ -103,9 +103,14 @@ public class BookController {
     /**
      * Sends request to delete a book from database by ID
      */
-    @GetMapping("/deleteBookByID")
-    public Map deleteBook(@RequestParam(value = "ID_book") String ID_book) {
-        return bookService.deleteBook(ID_book);
+    @GetMapping("/delete_book_ID")
+    public Map delete_book_ID(@RequestParam(value = "ID_book") String ID_book) {
+        return bookService.delete_book_ID(ID_book);
+    }
+
+    @GetMapping("/delete_bok_ISBN")
+    public Map delete_bok_ISBN(@RequestParam(value = "selected_ISBN_book") String ISBN_book) {
+        return bookService.delete_bok_ISBN(ISBN_book);
     }
 
     /**

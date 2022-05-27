@@ -10,6 +10,10 @@ public class Book {
     private String book_URL;
     private String check_book;
 
+
+
+    private String ISBN_book;
+
     public Book(String ID_book, String book_title, String book_qty, String book_author, String book_genre, String book_year, String book_URL) {
         this.ID_book = ID_book;
         this.book_title = book_title;
@@ -109,6 +113,14 @@ public class Book {
 
     public void setBook_URL(String book_URL) {
         this.book_URL = book_URL;
+    }
+
+    public String getISBN_book() {
+        return ISBN_book;
+    }
+
+    public void setISBN_book(String ISBN_book) {
+        this.ISBN_book = ISBN_book;
     }
 
     @Override

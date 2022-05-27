@@ -48,8 +48,12 @@ public class BookService {
     /**
      * Sends information to DAO class for deleting one book using ID_book
      */
-    public Map deleteBook(String ID_book) {
-        return bookDao.deleteBook(ID_book);
+    public Map delete_book_ID(String ID_book) {
+        return bookDao.delete_book_ID(ID_book);
+    }
+
+    public Map delete_bok_ISBN(String ISBN_book) {
+        return bookDao.delete_bok_ISBN(ISBN_book);
     }
 
     /**

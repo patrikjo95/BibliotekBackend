@@ -197,9 +197,9 @@ public class BookDao {
 
     }
 
-    public Map delete_bok_ISBN(String ISBN_book) {
+    public Map delete_book_ISBN(String ISBN_book) {
 
-        SimpleJdbcCall jdbcCall = new SimpleJdbcCall(jdbcTemplate).withProcedureName("delete_bok_ISBN");
+        SimpleJdbcCall jdbcCall = new SimpleJdbcCall(jdbcTemplate).withProcedureName("delete_book_ISBN");
 
         Map<String, String> inParameters = new HashMap<>();
 

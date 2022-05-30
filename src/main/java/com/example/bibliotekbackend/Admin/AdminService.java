@@ -1,5 +1,6 @@
 package com.example.bibliotekbackend.Admin;
 
+import com.example.bibliotekbackend.Customer.Customer;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,6 +41,10 @@ public class AdminService {
         Gson gson = new Gson();
         String adminListString = gson.toJson(adminList);
         return adminListString;
+    }
+
+    public Map scan_mail_and_password_admin(Admin admin) {
+        return adminDao.scan_mail_and_password_admin(admin.getAdmin_username(), admin.getAdmin_password());
     }
 
 }

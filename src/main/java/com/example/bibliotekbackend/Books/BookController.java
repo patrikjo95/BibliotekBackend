@@ -108,9 +108,9 @@ public class BookController {
         return bookService.delete_book_ID(ID_book);
     }
 
-    @GetMapping("/delete_bok_ISBN")
-    public Map delete_bok_ISBN(@RequestParam(value = "selected_ISBN_book") String ISBN_book) {
-        return bookService.delete_bok_ISBN(ISBN_book);
+    @GetMapping("/delete_book_ISBN")
+    public Map delete_book_ISBN(@RequestParam(value = "selected_ISBN_book") String ISBN_book) {
+        return bookService.delete_book_ISBN(ISBN_book);
     }
 
     /**

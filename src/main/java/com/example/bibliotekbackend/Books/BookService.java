@@ -98,4 +98,9 @@ public class BookService {
         System.out.println("Toros" + book);
         return bookDao.return_book(book.getID_book());
     }
+
+    public Map allBorrowedBooksReport(Book book) {
+        System.out.println("Toros" + book);
+        return bookDao.allBorrowedBooksReport(book.getCheck_book());
+    }
 }

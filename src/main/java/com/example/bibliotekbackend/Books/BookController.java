@@ -155,6 +155,20 @@ public class BookController {
         Gson gson = new Gson();
         System.out.println("Toros" + book_id);
         return gson.toJson(outParameters);
+    }
+
+    @GetMapping ("/allBorrowedBooksReport")
+    public String allBorrowedBooksReport(@RequestParam(value = "borrowedBook") String borrowedBook
+    ) {
+        Book book = new Book(borrowedBook);
+
+        System.out.println("Controller" + book);
+
+        Map outParameters = bookService.allBorrowedBooksReport(book);
+
+        Gson gson = new Gson();
+
+        return gson.toJson(outParameters);
 
     }
 }

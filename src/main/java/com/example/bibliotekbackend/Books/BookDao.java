@@ -56,7 +56,7 @@ public class BookDao {
         inParameters.put("new_book_qty", book_qty);
         inParameters.put("new_book_author", book_author);
         inParameters.put("new_book_genre", book_genre);
-        inParameters.put("new_book_year" , book_year);
+        inParameters.put("new_book_year", book_year);
         inParameters.put("new_book_URL", book_URL);
 
         System.out.println("Dao" + inParameters);
@@ -77,7 +77,7 @@ public class BookDao {
         return outParameters;
     }
 
-    public Map search_for_a_book_everyone (String check_book) {
+    public Map search_for_a_book_everyone(String check_book) {
         SimpleJdbcCall jdbcCall = new SimpleJdbcCall(jdbcTemplate).withProcedureName("search_for_a_book_everyone");
 
         Map<String, String> inParameters = new HashMap<>();
@@ -100,7 +100,7 @@ public class BookDao {
     }
 
 
-    public Map search_for_a_book_admin (String check_book) {
+    public Map search_for_a_book_admin(String check_book) {
         SimpleJdbcCall jdbcCall = new SimpleJdbcCall(jdbcTemplate).withProcedureName("search_for_a_book_admin");
 
         Map<String, String> inParameters = new HashMap<>();
@@ -323,6 +323,28 @@ public class BookDao {
         System.out.println(outParameters);
 
         System.out.println("Toros" + book_id);
+        return outParameters;
+    }
+
+    public Map allBorrowedBooksReport(String borrowedBook) {
+        SimpleJdbcCall simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate).withProcedureName("allBorrowedBooksReport");
+
+        Map<String, String> inParameters = new HashMap<>();
+
+        Book book = new Book(borrowedBook);
+
+        inParameters.put("borrowedBook", borrowedBook);
+
+        System.out.println("Dao" + inParameters);
+
+        SqlParameterSource in = new MapSqlParameterSource(inParameters);
+        System.out.println("in" + in);
+
+        Map<String, Object> outParameters = simpleJdbcCall.execute(in);
+
+        book.setCheck_book(borrowedBook);
+        System.out.println(outParameters);
+
         return outParameters;
     }
 }

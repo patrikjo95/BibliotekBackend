@@ -1,5 +1,6 @@
 package com.example.bibliotekbackend.Books;
 
+import com.example.bibliotekbackend.Customer.Customer;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -102,9 +103,14 @@ public class BookController {
     /**
      * Sends request to delete a book from database by ID
      */
-    @GetMapping("/deleteBookByID")
-    public Map deleteBook(@RequestParam(value = "ID_book") String ID_book) {
-        return bookService.deleteBook(ID_book);
+    @GetMapping("/delete_book_ID")
+    public Map delete_book_ID(@RequestParam(value = "ID_book") String ID_book) {
+        return bookService.delete_book_ID(ID_book);
+    }
+
+    @GetMapping("/delete_book_ISBN")
+    public Map delete_book_ISBN(@RequestParam(value = "selected_ISBN_book") String ISBN_book) {
+        return bookService.delete_book_ISBN(ISBN_book);
     }
 
     /**
@@ -135,5 +141,34 @@ public class BookController {
     @GetMapping("/downloadMostRecentBook")
     public String downloadMostRecent() {
         return bookService.downloadMostRecentBook();
+    }
+
+    @GetMapping("/return_book")
+    public String return_book(@RequestParam(value = "book_id") String book_id) {
+        System.out.println("Toros" + book_id);
+        Book book = new Book(book_id, null, null, null, null,null, null);
+
+        System.out.println("Controller " + book);
+
+        Map outParameters = bookService.return_book(book);
+
+        Gson gson = new Gson();
+        System.out.println("Toros" + book_id);
+        return gson.toJson(outParameters);
+    }
+
+    @GetMapping ("/allBorrowedBooksReport")
+    public String allBorrowedBooksReport(@RequestParam(value = "borrowedBook") String borrowedBook
+    ) {
+        Book book = new Book(borrowedBook);
+
+        System.out.println("Controller" + book);
+
+        Map outParameters = bookService.allBorrowedBooksReport(book);
+
+        Gson gson = new Gson();
+
+        return gson.toJson(outParameters);
+
     }
 }

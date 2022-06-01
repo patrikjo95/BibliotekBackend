@@ -120,4 +120,18 @@ return customerService.downloadOneCustomer(ID_customer);
         return gson.toJson(outParameters);
     }
 
+    @GetMapping("/which_books_are_borrowed")
+    public String which_books_are_borrowed(@RequestParam(value = "customer_pnr_live") String customer_pnr_live) {
+
+        Customer customer = new Customer(customer_pnr_live, null, null);
+
+        System.out.println("Controller " + customer);
+
+        Map outParameters = customerService.which_books_are_borrowed(customer);
+
+        Gson gson = new Gson();
+
+        return gson.toJson(outParameters);
+    }
+
 }

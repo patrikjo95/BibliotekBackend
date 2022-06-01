@@ -56,7 +56,7 @@ public class BookDao {
         inParameters.put("new_book_qty", book_qty);
         inParameters.put("new_book_author", book_author);
         inParameters.put("new_book_genre", book_genre);
-        inParameters.put("new_book_year" , book_year);
+        inParameters.put("new_book_year", book_year);
         inParameters.put("new_book_URL", book_URL);
 
         System.out.println("Dao" + inParameters);
@@ -77,7 +77,7 @@ public class BookDao {
         return outParameters;
     }
 
-    public Map search_for_a_book_everyone (String check_book) {
+    public Map search_for_a_book_everyone(String check_book) {
         SimpleJdbcCall jdbcCall = new SimpleJdbcCall(jdbcTemplate).withProcedureName("search_for_a_book_everyone");
 
         Map<String, String> inParameters = new HashMap<>();
@@ -100,7 +100,7 @@ public class BookDao {
     }
 
 
-    public Map search_for_a_book_admin (String check_book) {
+    public Map search_for_a_book_admin(String check_book) {
         SimpleJdbcCall jdbcCall = new SimpleJdbcCall(jdbcTemplate).withProcedureName("search_for_a_book_admin");
 
         Map<String, String> inParameters = new HashMap<>();
@@ -162,7 +162,7 @@ public class BookDao {
     /**
      * method to delete a book from database using ID
      */
-    public Map deleteBook(String ID_book) {
+    public Map delete_book_ID(String ID_book) {
         /*
         String query = "DELETE FROM books WHERE ID_book = ?;";
 
@@ -175,7 +175,7 @@ public class BookDao {
 
          */
 
-        SimpleJdbcCall jdbcCall = new SimpleJdbcCall(jdbcTemplate).withProcedureName("delete_book");
+        SimpleJdbcCall jdbcCall = new SimpleJdbcCall(jdbcTemplate).withProcedureName("delete_book_ID");
 
         Map<String, String> inParameters = new HashMap<>();
 
@@ -192,6 +192,30 @@ public class BookDao {
         Map<String, Object> outParameters = jdbcCall.execute(in);
 
         book.setCheck_book(ID_book);
+
+        return outParameters;
+
+    }
+
+    public Map delete_book_ISBN(String ISBN_book) {
+
+        SimpleJdbcCall jdbcCall = new SimpleJdbcCall(jdbcTemplate).withProcedureName("delete_book_ISBN");
+
+        Map<String, String> inParameters = new HashMap<>();
+
+        // Book book = new Book(ISBN_book);
+
+        inParameters.put("selected_ISBN_book", ISBN_book);
+
+        //System.out.println("Dao" + inParameters);
+
+        SqlParameterSource in = new MapSqlParameterSource(inParameters);
+
+        //System.out.println("in" + in);
+
+        Map<String, Object> outParameters = jdbcCall.execute(in);
+
+        // book.setCheck_book(ID_book);
 
         return outParameters;
 
@@ -280,5 +304,47 @@ public class BookDao {
             return book;
         });
         return temp;
+    }
+
+    public Map return_book(String book_id) {
+        System.out.println("Toros" + book_id);
+        SimpleJdbcCall simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate).withProcedureName("return_book");
+
+        Map<String, String> inParameters = new HashMap<>();
+
+        inParameters.put("book_id", book_id);
+
+        System.out.println("Dao" + inParameters);
+
+        SqlParameterSource in = new MapSqlParameterSource(inParameters);
+        System.out.println("in" + in);
+
+        Map<String, Object> outParameters = simpleJdbcCall.execute(in);
+        System.out.println(outParameters);
+
+        System.out.println("Toros" + book_id);
+        return outParameters;
+    }
+
+    public Map allBorrowedBooksReport(String borrowedBook) {
+        SimpleJdbcCall simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate).withProcedureName("allBorrowedBooksReport");
+
+        Map<String, String> inParameters = new HashMap<>();
+
+        Book book = new Book(borrowedBook);
+
+        inParameters.put("borrowedBook", borrowedBook);
+
+        System.out.println("Dao" + inParameters);
+
+        SqlParameterSource in = new MapSqlParameterSource(inParameters);
+        System.out.println("in" + in);
+
+        Map<String, Object> outParameters = simpleJdbcCall.execute(in);
+
+        book.setCheck_book(borrowedBook);
+        System.out.println(outParameters);
+
+        return outParameters;
     }
 }

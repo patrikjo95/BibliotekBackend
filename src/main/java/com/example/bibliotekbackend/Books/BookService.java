@@ -1,5 +1,6 @@
 package com.example.bibliotekbackend.Books;
 
+import com.example.bibliotekbackend.Customer.Customer;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,8 +48,12 @@ public class BookService {
     /**
      * Sends information to DAO class for deleting one book using ID_book
      */
-    public Map deleteBook(String ID_book) { //erkan säger att det ska vara int här, eftersom det är int i databasen, allt eftersom "" tecknet förstör
-        return bookDao.deleteBook(ID_book);
+    public Map delete_book_ID(String ID_book) {
+        return bookDao.delete_book_ID(ID_book);
+    }
+
+    public Map delete_book_ISBN(String ISBN_book) {
+        return bookDao.delete_book_ISBN(ISBN_book);
     }
 
     /**
@@ -87,5 +92,15 @@ public class BookService {
         book = bookDao.newlyAddedBook();
         Gson gson = new Gson();
         return gson.toJson(book);
+    }
+
+    public Map return_book(Book book) {
+        System.out.println("Toros" + book);
+        return bookDao.return_book(book.getID_book());
+    }
+
+    public Map allBorrowedBooksReport(Book book) {
+        System.out.println("Toros" + book);
+        return bookDao.allBorrowedBooksReport(book.getCheck_book());
     }
 }

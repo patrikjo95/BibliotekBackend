@@ -1,6 +1,7 @@
 package com.example.bibliotekbackend.Admin;
 
 
+import com.example.bibliotekbackend.Customer.Customer;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -86,5 +87,32 @@ public class AdminDao {
         }
         adminList.sort(Comparator.comparing(Admin::getAdmin_username));
         return adminList;
+    }
+
+    public Map scan_mail_and_password_admin(String test_mail, String test_password){
+        SimpleJdbcCall jdbcCall = new SimpleJdbcCall(jdbcTemplate).withProcedureName("scan_mail_and_password_admin");
+
+        Map<String, String> inParameters = new HashMap<>();
+
+        Admin admin = new Admin(test_mail, test_password);
+
+        inParameters.put("test_mail", test_mail);
+        inParameters.put("test_password", test_password);
+
+        System.out.println("Dao" + inParameters);
+
+        SqlParameterSource in = new MapSqlParameterSource(inParameters);
+        System.out.println("in" + in);
+        //System.out.println(in);
+        //System.out.println(jdbcCall.execute(in));
+        //System.out.println(outParameters);
+
+        Map<String, Object> outParameters = jdbcCall.execute(in);
+
+
+        admin.setAdmin_username(test_mail);
+        admin.setAdmin_password(test_password);
+
+        return outParameters;
     }
 }

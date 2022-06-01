@@ -1,19 +1,40 @@
 package com.example.bibliotekbackend.Books;
 
+import com.example.bibliotekbackend.Customer.Customer;
+
 public class Book {
+    private String customerPNR;
     private String ID_book;
     private String ISBN_book;
     private String book_title;
     private String book_qty;
     private String book_author;
     private String book_genre;
+    private String returnDate;
     private String book_year;
     private String book_URL;
     private String check_book;
 
 
+    public Book(){
 
-    private String ISBN_book;
+    }
+
+    public Book(String customerPNR, String ID_book, String ISBN_book, String book_title, String book_qty, String book_author, String book_genre, String returnDate, String book_year, String book_URL, String check_book) {
+        this.customerPNR = customerPNR;
+        this.ID_book = ID_book;
+        this.ISBN_book = ISBN_book;
+        this.book_title = book_title;
+        this.book_qty = book_qty;
+        this.book_author = book_author;
+        this.book_genre = book_genre;
+        this.returnDate = returnDate;
+        this.book_year = book_year;
+        this.book_URL = book_URL;
+        this.check_book = check_book;
+
+    }
+
 
     public Book(String ID_book, String book_title, String book_qty, String book_author, String book_genre, String book_year, String book_URL) {
         this.ID_book = ID_book;
@@ -38,11 +59,6 @@ public class Book {
         this.check_book = check_book;
     }
 
-    /*
-    public Book(String ID_book) {
-        this.ID_book = ID_book;
-    }
-     */
 
     // skapa eller använd konstruktor som tillåter oss enbart ändra ID_book medan allt annat sätts tiill null!
     public static Book createBookWithOnlyID(String ID_book) {
@@ -122,6 +138,22 @@ public class Book {
 
     public void setISBN_book(String ISBN_book) {
         this.ISBN_book = ISBN_book;
+    }
+
+    public String getCustomerPNR() {
+        return customerPNR;
+    }
+
+    public void setCustomerPNR(String customerPNR) {
+        this.customerPNR = customerPNR;
+    }
+
+    public String getReturnDate() {
+        return returnDate;
+    }
+
+    public void setReturnDate(String returnDate) {
+        this.returnDate = returnDate;
     }
 
     @Override

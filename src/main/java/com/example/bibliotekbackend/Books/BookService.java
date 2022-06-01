@@ -95,12 +95,10 @@ public class BookService {
     }
 
     public Map return_book(Book book) {
-        System.out.println("Toros" + book);
         return bookDao.return_book(book.getID_book());
     }
 
-    public Map allBorrowedBooksReport(Book book) {
-        System.out.println("Toros" + book);
-        return bookDao.allBorrowedBooksReport(book.getCheck_book());
+    public Map select_all_borrowed_books() {
+        return bookDao.select_all_borrowed_books();
     }
 }

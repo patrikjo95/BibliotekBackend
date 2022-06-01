@@ -157,14 +157,11 @@ public class BookController {
         return gson.toJson(outParameters);
     }
 
-    @GetMapping ("/allBorrowedBooksReport")
-    public String allBorrowedBooksReport(@RequestParam(value = "borrowedBook") String borrowedBook
+    @GetMapping ("/select_all_borrowed_books")
+    public String select_all_borrowed_books(
     ) {
-        Book book = new Book(borrowedBook);
 
-        System.out.println("Controller" + book);
-
-        Map outParameters = bookService.allBorrowedBooksReport(book);
+        Map outParameters = bookService.select_all_borrowed_books();
 
         Gson gson = new Gson();
 

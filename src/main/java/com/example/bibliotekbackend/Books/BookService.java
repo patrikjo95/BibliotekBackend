@@ -101,4 +101,9 @@ public class BookService {
     public Map select_all_borrowed_books() {
         return bookDao.select_all_borrowed_books();
     }
+
+
+    public Map popular_books(String book_genre) {
+        return bookDao.popular_books(book_genre);
+    }
 }

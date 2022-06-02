@@ -14,6 +14,7 @@ public class Book {
     private String book_year;
     private String book_URL;
     private String check_book;
+    private int points;
 
 
     public Book(){
@@ -66,6 +67,10 @@ public class Book {
         // book.b
         //this.ID_book = ID_book;
         return new Book(ID_book);
+    }
+
+    public Book(int points){
+        this.points = points;
     }
 
     public String getCheck_book() {
@@ -154,6 +159,14 @@ public class Book {
 
     public void setReturnDate(String returnDate) {
         this.returnDate = returnDate;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
     }
 
     @Override

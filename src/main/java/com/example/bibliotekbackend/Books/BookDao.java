@@ -296,7 +296,7 @@ public class BookDao {
             Book book = new Book(
                     rs.getString("ID_book"),
                     rs.getString("book_title"),
-                    rs.getString("book _qty"),
+                    rs.getString("book_qty"),
                     rs.getString("book_author"),
                     rs.getString("book_genre"),
                     rs.getString("book_year"),
@@ -326,30 +326,15 @@ public class BookDao {
         return outParameters;
     }
 
-    public Map allBorrowedBooksReport(String borrowedBook) {
-        SimpleJdbcCall simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate).withProcedureName("allBorrowedBooksReport");
+    public Map select_all_borrowed_books() {
+        SimpleJdbcCall simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate).withProcedureName("select_all_borrowed_books");
 
-        Map<String, String> inParameters = new HashMap<>();
 
-        Book book = new Book(borrowedBook);
+        Map<String, Object> outParameters = simpleJdbcCall.execute();
 
-        inParameters.put("borrowedBook", borrowedBook);
-
-        System.out.println("Dao" + inParameters);
-
-        SqlParameterSource in = new MapSqlParameterSource(inParameters);
-        System.out.println("in" + in);
-
-        Map<String, Object> outParameters = simpleJdbcCall.execute(in);
-
-        book.setCheck_book(borrowedBook);
         System.out.println(outParameters);
 
         return outParameters;
-
     }
-
-
-
 
 }

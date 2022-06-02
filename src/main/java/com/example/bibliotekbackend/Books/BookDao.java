@@ -337,4 +337,20 @@ public class BookDao {
         return outParameters;
     }
 
+    public Map popular_books(String book_genre) {
+        SimpleJdbcCall simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate).withProcedureName("show_popular_books_view");
+
+        Map<String, String> inParameters = new HashMap<>();
+        Book book = new Book(null, null, null, book_genre, null, null);
+        inParameters.put("genre", book_genre);
+        System.out.println("Dao" + inParameters);
+        SqlParameterSource in = new MapSqlParameterSource(inParameters);
+        System.out.println("in" + in);
+        Map<String, Object> outParameters = simpleJdbcCall.execute(in);
+
+        System.out.println(outParameters);
+        book.setBook_genre(book_genre);
+        return outParameters;
+
+    }
 }

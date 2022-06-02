@@ -296,7 +296,7 @@ public class BookDao {
             Book book = new Book(
                     rs.getString("ID_book"),
                     rs.getString("book_title"),
-                    rs.getString("book_qty"),
+                    rs.getString("book _qty"),
                     rs.getString("book_author"),
                     rs.getString("book_genre"),
                     rs.getString("book_year"),
@@ -346,5 +346,10 @@ public class BookDao {
         System.out.println(outParameters);
 
         return outParameters;
+
     }
+
+
+
+
 }

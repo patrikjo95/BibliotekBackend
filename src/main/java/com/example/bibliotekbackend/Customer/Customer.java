@@ -4,16 +4,8 @@ public class Customer {
     // private int ID_customer;
     private String customer_pnr;
     private String customer_pin;
-
-    public String getISBN_book() {
-        return ISBN_book;
-    }
-
-    public void setISBN_book(String ISBN_book) {
-        this.ISBN_book = ISBN_book;
-    }
-
     private String ISBN_book;
+
 
 
     /*
@@ -78,6 +70,14 @@ public class Customer {
 
     public void setCustomer_pin(String customer_pin) {
         this.customer_pin = customer_pin;
+    }
+
+    public String getISBN_book() {
+        return ISBN_book;
+    }
+
+    public void setISBN_book(String ISBN_book) {
+        this.ISBN_book = ISBN_book;
     }
 
     @Override

@@ -218,6 +218,20 @@ public class BookDao {
         // book.setCheck_book(ID_book);
 
         return outParameters;
+    }
+    public Map yes_delete(String ISBN_book) {
+
+        SimpleJdbcCall jdbcCall = new SimpleJdbcCall(jdbcTemplate).withProcedureName("yes_delete");
+
+        Map<String, String> inParameters = new HashMap<>();
+
+        inParameters.put("ISBN", ISBN_book);
+
+        SqlParameterSource in = new MapSqlParameterSource(inParameters);
+
+        Map<String, Object> outParameters = jdbcCall.execute(in);
+
+        return outParameters;
 
     }
 

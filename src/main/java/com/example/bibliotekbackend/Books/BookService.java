@@ -55,6 +55,9 @@ public class BookService {
     public Map delete_book_ISBN(String ISBN_book) {
         return bookDao.delete_book_ISBN(ISBN_book);
     }
+    public Map yes_delete(String ISBN_book) {
+        return bookDao.yes_delete(ISBN_book);
+    }
 
     /**
      * @param ID_book

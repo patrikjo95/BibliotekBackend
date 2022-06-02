@@ -20,13 +20,13 @@ public class BookController {
     /**
      * Sends request to insert a new book to database
      */
-    @GetMapping ("/insertBook")
+    @GetMapping("/insertBook")
     public String insertBook(@RequestParam(value = "new_book_title") String book_title,
-                           @RequestParam(value = "new_book_qty")String book_qty,
-                           @RequestParam(value = "new_book_author") String book_author,
-                           @RequestParam(value = "new_book_genre") String book_genre,
-                           @RequestParam(value = "new_book_year") String book_year,
-                           @RequestParam(value = "new_book_URL") String book_URL
+                             @RequestParam(value = "new_book_qty") String book_qty,
+                             @RequestParam(value = "new_book_author") String book_author,
+                             @RequestParam(value = "new_book_genre") String book_genre,
+                             @RequestParam(value = "new_book_year") String book_year,
+                             @RequestParam(value = "new_book_URL") String book_URL
     ) {
         Book book = new Book(book_title, book_qty, book_author, book_genre, book_year, book_URL);
 
@@ -40,7 +40,7 @@ public class BookController {
 
     }
 
-    @GetMapping ("/search_for_a_book_everyone")
+    @GetMapping("/search_for_a_book_everyone")
     public String search_for_a_book_everyone(@RequestParam(value = "check_book") String check_book
     ) {
         Book book = new Book(check_book);
@@ -53,9 +53,9 @@ public class BookController {
 
         return gson.toJson(outParameters);
 
-        }
+    }
 
-    @GetMapping ("/search_for_a_book_admin")
+    @GetMapping("/search_for_a_book_admin")
     public String search_for_a_book_admin(@RequestParam(value = "check_book") String check_book
     ) {
         Book book = new Book(check_book);
@@ -70,7 +70,7 @@ public class BookController {
 
     }
 
-    @GetMapping ("/search_for_a_book_borrow")
+    @GetMapping("/search_for_a_book_borrow")
     public String search_for_a_book_borrow(@RequestParam(value = "check_book") String check_book
     ) {
         Book book = new Book(check_book);
@@ -113,6 +113,13 @@ public class BookController {
         return bookService.delete_book_ISBN(ISBN_book);
     }
 
+    @GetMapping("/yes_delete")
+    public Map yes_delete(@RequestParam(value = "ISBN") String ISBN_book) {
+        return bookService.yes_delete(ISBN_book);
+    }
+
+
+
     /**
      * Sends request to download one book from database by ID
      */
@@ -146,7 +153,7 @@ public class BookController {
     @GetMapping("/return_book")
     public String return_book(@RequestParam(value = "book_id") String book_id) {
         System.out.println("Toros" + book_id);
-        Book book = new Book(book_id, null, null, null, null,null, null);
+        Book book = new Book(book_id, null, null, null, null, null, null);
 
         System.out.println("Controller " + book);
 
@@ -157,7 +164,7 @@ public class BookController {
         return gson.toJson(outParameters);
     }
 
-    @GetMapping ("/select_all_borrowed_books")
+    @GetMapping("/select_all_borrowed_books")
     public String select_all_borrowed_books(
     ) {
 
@@ -169,3 +176,5 @@ public class BookController {
 
     }
 }
+
+

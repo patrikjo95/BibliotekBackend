@@ -106,4 +106,12 @@ public class BookService {
     public Map popular_books(String book_genre) {
         return bookDao.popular_books(book_genre);
     }
+
+    public Map search_for_a_book_qty(String check_book){
+        return bookDao.search_for_a_book_qty(check_book);
+    }
+
+    public Map update_book(String ISBN_book, String book_qty){
+        return bookDao.update_book(ISBN_book, book_qty);
+    }
 }

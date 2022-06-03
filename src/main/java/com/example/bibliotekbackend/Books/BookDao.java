@@ -353,4 +353,47 @@ public class BookDao {
         return outParameters;
 
     }
+
+    public Map search_for_a_book_qty(String check_book) {
+        SimpleJdbcCall simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate).withProcedureName("search_for_a_book_qty");
+
+        Map<String, String> inParameters = new HashMap<>();
+        Book book = new Book(check_book);
+        inParameters.put("check_book", check_book);
+
+        SqlParameterSource in = new MapSqlParameterSource(inParameters);
+        System.out.println("in" + in);
+
+        Map<String, Object> outParameters = simpleJdbcCall.execute(in);
+
+        System.out.println(outParameters);
+
+        book.setBook_genre(check_book);
+
+        return outParameters;
+
+    }
+
+    public Map update_book(String ISBN_book, String book_qty){
+        SimpleJdbcCall simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate).withProcedureName("update_book");
+
+        Map<String, String> inParameters = new HashMap<>();
+        Book book = new Book(ISBN_book, book_qty);
+        inParameters.put("ISBN_book_live", ISBN_book);
+        inParameters.put("qty_book", book_qty);
+
+        SqlParameterSource in = new MapSqlParameterSource(inParameters);
+        System.out.println("in" + in);
+
+        Map<String, Object> outParameters = simpleJdbcCall.execute(in);
+
+        System.out.println(outParameters);
+
+        book.setISBN_book(ISBN_book);
+        book.setBook_qty(book_qty);
+
+        return outParameters;
+    }
+
+
 }

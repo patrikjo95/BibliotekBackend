@@ -60,6 +60,11 @@ public class Book {
         this.check_book = check_book;
     }
 
+    public Book(String ISBN_book, String book_qty){
+        this.ISBN_book = ISBN_book;
+        this.book_qty = book_qty;
+    }
+
 
     // skapa eller använd konstruktor som tillåter oss enbart ändra ID_book medan allt annat sätts tiill null!
     public static Book createBookWithOnlyID(String ID_book) {

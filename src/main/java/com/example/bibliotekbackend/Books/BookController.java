@@ -168,4 +168,16 @@ public class BookController {
         return gson.toJson(outParameters);
 
     }
+
+
+    @GetMapping ("/show_popular_books_view")
+    public String popular_books(@RequestParam(value = "book_genre") String book_genre) {
+        System.out.println("Toros " + book_genre);
+        Book book = new Book(null, null, null, book_genre, null, null);
+        System.out.println("Controller " + book);
+        Map outParameters = bookService.popular_books(book_genre);
+        Gson gson = new Gson();
+        System.out.println("Toros" + book_genre);
+        return gson.toJson(outParameters);
+    }
 }

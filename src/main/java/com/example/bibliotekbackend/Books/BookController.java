@@ -180,4 +180,25 @@ public class BookController {
         System.out.println("Toros" + book_genre);
         return gson.toJson(outParameters);
     }
+
+    @GetMapping("/search_for_a_book_qty")
+    public String search_for_a_book_qty(@RequestParam(value = "check_book") String check_book){
+        //Book book = new Book(null, null, ISBN_book, null, null, null, null, null, null, null, null);
+
+        Map outParameters = bookService.search_for_a_book_qty(check_book);
+
+        Gson gson = new Gson();
+
+        return gson.toJson(outParameters);
+    }
+
+    @GetMapping("/update_book")
+    public String update_book(@RequestParam(value = "ISBN_book_live") String ISBN_book, @RequestParam(value = "qty_book") String book_qty){
+
+        Map outParameters = bookService.update_book(ISBN_book, book_qty);
+
+        Gson gson = new Gson();
+
+        return gson.toJson(outParameters);
+    }
 }

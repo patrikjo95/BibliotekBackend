@@ -68,9 +68,7 @@ public class Book {
 
     // skapa eller använd konstruktor som tillåter oss enbart ändra ID_book medan allt annat sätts tiill null!
     public static Book createBookWithOnlyID(String ID_book) {
-        // Book book = new Book();
-        // book.b
-        //this.ID_book = ID_book;
+
         return new Book(ID_book);
     }
 

@@ -31,64 +31,12 @@ public class AdminDao {
         this.jdbcTemplate = new JdbcTemplate();
     }
 
-    // for ref:
-    // int ID_admin, String admin_username, String admin_password
-
-
     /**
-     * gets one admin from the database by id
+     * scans the mail and password input from the frontend and checks it with the decrypted table in DB
+     * @param test_mail
+     * @param test_password
+     * @return
      */
-    public Admin downloadOneAdminByID(int ID_admin) {
-
-        String query = "SELECT * FROM admin WHERE ID_admin = ?;";
-
-        return this.jdbcTemplate.queryForObject(query, new RowMapper<Admin>() {
-            @Override
-            public Admin mapRow(ResultSet rs, int rowNum) throws SQLException {
-                Admin innerAdmin = new Admin(
-                        rs.getInt("ID_admin"),
-                        rs.getString("admin_username"),
-                        rs.getString("admin_password")
-                );
-                return innerAdmin;
-            }
-        }, ID_admin);
-    }
-
-    /**
-     * gets one admin from the database by admin_username
-     */
-    public String downloadAdminByUsername(String admin_username) {
-        Gson gson = new Gson();
-        String query = "SELECT * FROM admin WHERE admin_username = ?;";
-        Admin temp = this.jdbcTemplate.queryForObject(query, (rs, rowNum) -> new Admin(
-                rs.getInt("ID_admin"),
-                rs.getString("admin_username"),
-                rs.getString("admin_password")), admin_username);
-        return gson.toJson(temp);
-    }
-
-    /**
-     * downloads all admin from the database
-     *
-     * @return ArrayList<Admin>
-     */
-    public ArrayList<Admin> downloadAllAdmin() {
-        String query = "SELECT * FROM admin;";
-        ArrayList<Admin> adminList = new ArrayList<>();
-        List<Map<String, Object>> rows = jdbcTemplate.queryForList(query);
-
-        for (Map<String, Object> row : rows) {
-            Admin admin = new Admin(
-                    (int) (long) row.get("ID_admin"),
-                    String.valueOf(row.get("admin_username")),
-                    String.valueOf(row.get("admin_password")));
-            adminList.add(admin);
-        }
-        adminList.sort(Comparator.comparing(Admin::getAdmin_username));
-        return adminList;
-    }
-
     public Map scan_mail_and_password_admin(String test_mail, String test_password){
         SimpleJdbcCall jdbcCall = new SimpleJdbcCall(jdbcTemplate).withProcedureName("scan_mail_and_password_admin");
 
@@ -103,9 +51,6 @@ public class AdminDao {
 
         SqlParameterSource in = new MapSqlParameterSource(inParameters);
         System.out.println("in" + in);
-        //System.out.println(in);
-        //System.out.println(jdbcCall.execute(in));
-        //System.out.println(outParameters);
 
         Map<String, Object> outParameters = jdbcCall.execute(in);
 

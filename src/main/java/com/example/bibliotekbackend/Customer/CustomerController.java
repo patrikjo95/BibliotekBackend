@@ -22,7 +22,6 @@ public class CustomerController {
     /**
      * Sends request to insert a new customer to database
      */
-
     @GetMapping("/add_customer")
     public String add_customer(@RequestParam(value = "pnr") String customer_pnr,
                                @RequestParam(value = "pin") String customer_pin) {
@@ -37,55 +36,6 @@ public class CustomerController {
 
     }
 
-    /**
-     * Sends request to update a new customer in the database, specify ID
-     */
-
-    @PostMapping("/updateCustomer")
-    public void updateCustomer(@RequestParam(value = "ID_customer", defaultValue = "0") int ID_customer,
-                               @RequestParam(value = "customer_pnr") String customer_pnr,
-                               @RequestParam(value = "customer_pin") String customer_pin
-    ) {
-        customerService.updateCustomer(ID_customer, customer_pnr, customer_pin);
-    }
-
-
-    /**
-     * Sends request to delete a customer from database by ID
-     */
-    @DeleteMapping("/deleteCustomerByID")
-    public void deleteCustomer(@RequestParam(value = "ID_customer", defaultValue = "-1") int ID_customer) {
-        customerService.deleteCustomer(ID_customer);
-    }
-
-
-    /**
-     * Sends request to download one customer from database by ID
-     */
-    /*
-    @GetMapping("/downloadOneCustomer")
-    public String downloadOneCustomer(@RequestParam(value = "ID_customer", defaultValue = "-1")int ID_customer){
-return customerService.downloadOneCustomer(ID_customer);
-
-    }
-    */
-
-
-    /**
-     * Sends request to download all customers from database by ID
-     */
-    @GetMapping("/downloadAllCustomers")
-    public String downloadAllCustomers() {
-        return customerService.downloadAllCustomers();
-    }
-
-    /*
-    @GetMapping("/downloadCustomerByUsername")
-    public String downloadCustomerByUsername(@RequestParam(value = "customer_pnr", defaultValue = "noCustomer_pnr")String customer_pnr) {
-        return customerService.downloadCustomerByUsername(customer_pnr);
-    }
-
-     */
 
     @GetMapping("/login_customer")
     public String login_customer(@RequestParam(value = "test_pnr") String customer_pnr,
@@ -101,14 +51,12 @@ return customerService.downloadOneCustomer(ID_customer);
 
         return gson.toJson(outParameters);
 
-
-        // return customerService.login_Customer(customer_pnr, customer_pin);
     }
 
     @GetMapping("/borrow_book")
     public String borrow_book(@RequestParam(value = "customer_pnr_live") String customer_pnr,
                               @RequestParam(value = "ISBN_book_live") String ISBN_book) {
-        //Customer customer = new Customer(customer_pnr, ISBN_book);
+
         Customer customer = createCustomer(customer_pnr, null, ISBN_book);
 
         System.out.println("Controller " + customer);

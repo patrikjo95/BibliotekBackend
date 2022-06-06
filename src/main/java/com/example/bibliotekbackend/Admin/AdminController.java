@@ -18,26 +18,11 @@ public class AdminController {
     }
 
     /**
-     * Sends request to download one admin from database by ID
+     * scans the mail and password input from the frontend and checks it with the decrypted table in DB
+     * @param admin_username
+     * @param admin_password
+     * @return
      */
-    @GetMapping("/downloadOneAdmin")
-    public String downloadOneAdmin(@RequestParam(value = "ID_admin", defaultValue = "-1") int ID_admin) {
-        return adminService.downloadOneAdmin(ID_admin);
-    }
-
-    /**
-     * Sends request to download all admin from database by ID
-     */
-    @GetMapping("/downloadAllAdmin")
-    public String downloadAllAdmin() {
-        return adminService.downloadAllAdmin();
-    }
-
-    @GetMapping("/downloadAdminByUsername")
-    public String downloadAdminByUsername(@RequestParam(value = "new_admin_username") String admin_username) {
-        return adminService.downloadAdminByUsername(admin_username);
-    }
-
     @GetMapping("/scan_mail_and_password_admin")
     public String scan_mail_and_password_admin(@RequestParam(value = "test_mail") String admin_username,
                                                @RequestParam(value = "test_password") String admin_password) {

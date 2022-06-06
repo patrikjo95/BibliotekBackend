@@ -30,8 +30,6 @@ public class BookController {
     ) {
         Book book = new Book(book_title, book_qty, book_author, book_genre, book_year, book_URL);
 
-        //System.out.println("Controller" + book);
-
         Map outParameters = bookService.insertBook(book);
 
         Gson gson = new Gson();
@@ -45,8 +43,6 @@ public class BookController {
     ) {
         Book book = new Book(check_book);
 
-        //System.out.println("Controller" + book);
-
         Map outParameters = bookService.search_for_a_book_everyone(book);
 
         Gson gson = new Gson();
@@ -59,8 +55,6 @@ public class BookController {
     public String search_for_a_book_admin(@RequestParam(value = "check_book") String check_book
     ) {
         Book book = new Book(check_book);
-
-        //System.out.println("Controller" + book);
 
         Map outParameters = bookService.search_for_a_book_admin(book);
 
@@ -86,21 +80,6 @@ public class BookController {
     }
 
     /**
-     * Sends request to update a new book in the database, specify ID
-     */
-    @PostMapping("/updateBook")
-    public void updateBook(@RequestParam(value = "ID_book", defaultValue = "0") int ID_book,
-                           @RequestParam(value = "book_title", defaultValue = "noTitle") String book_title,
-                           @RequestParam(value = "book_qty", defaultValue = "0") int book_qty,
-                           @RequestParam(value = "book_author", defaultValue = "noBook_author") String book_author,
-                           @RequestParam(value = "book_genre", defaultValue = "noBook_genre") String book_genre,
-                           @RequestParam(value = "book_year", defaultValue = "noBook_year") String book_year,
-                           @RequestParam(value = "book_URL", defaultValue = "noBook_URL") String book_URL
-    ) {
-        bookService.updateBook(ID_book, book_title, book_qty, book_author, book_genre, book_year, book_URL);
-    }
-
-    /**
      * Sends request to delete a book from database by ID
      */
     @GetMapping("/delete_book_ID")
@@ -113,35 +92,6 @@ public class BookController {
         return bookService.delete_book_ISBN(ISBN_book);
     }
 
-    /**
-     * Sends request to download one book from database by ID
-     */
-    @GetMapping("/downloadOneBook")
-    public String downloadOneBook(@RequestParam(value = "ID_book", defaultValue = "-1") int ID_book) {
-        return bookService.downloadOneBook(ID_book);
-    }
-
-    /**
-     * Sends request to download all books from database by ID
-     */
-    @GetMapping("/downloadAllBooks")
-    public String downloadAllBooks() {
-        return bookService.downloadAllBooks();
-    }
-
-    @GetMapping("/downloadBookByTitle")
-    public String downloadBookByTitle(@RequestParam(value = "book_title", defaultValue = "noBook_title") String book_title) {
-        return bookService.downloadBookByTitle(book_title);
-    }
-
-    /**
-     * Sends request to download a recent book that were
-     * inserted into the database
-     */
-    @GetMapping("/downloadMostRecentBook")
-    public String downloadMostRecent() {
-        return bookService.downloadMostRecentBook();
-    }
 
     @GetMapping("/return_book")
     public String return_book(@RequestParam(value = "book_id") String book_id) {
@@ -183,7 +133,6 @@ public class BookController {
 
     @GetMapping("/search_for_a_book_qty")
     public String search_for_a_book_qty(@RequestParam(value = "check_book") String check_book){
-        //Book book = new Book(null, null, ISBN_book, null, null, null, null, null, null, null, null);
 
         Map outParameters = bookService.search_for_a_book_qty(check_book);
 

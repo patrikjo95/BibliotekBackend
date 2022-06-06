@@ -70,4 +70,8 @@ public class BookService {
     public Map update_book(String ISBN_book, String book_qty){
         return bookDao.update_book(ISBN_book, book_qty);
     }
+
+    public Map yes_delete(String ISBN_book) {
+        return bookDao.yes_delete(ISBN_book);
+    }
 }

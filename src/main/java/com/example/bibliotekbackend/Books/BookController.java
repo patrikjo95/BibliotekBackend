@@ -150,4 +150,9 @@ public class BookController {
 
         return gson.toJson(outParameters);
     }
+
+    @GetMapping("/yes_delete")
+    public Map yes_delete(@RequestParam(value = "ISBN") String ISBN_book) {
+        return bookService.yes_delete(ISBN_book);
+    }
 }

@@ -39,13 +39,6 @@ public class BookService {
     }
 
     /**
-     * Sends information to DAO class for updating one book.
-     */
-    public void updateBook(int ID_book, String book_title, int book_qty, String book_author, String book_genre, String book_year, String book_URL) {
-        bookDao.updateBook(ID_book, book_title, book_qty, book_author, book_genre, book_year, book_URL);
-    }
-
-    /**
      * Sends information to DAO class for deleting one book using ID_book
      */
     public Map delete_book_ID(String ID_book) {
@@ -56,43 +49,6 @@ public class BookService {
         return bookDao.delete_book_ISBN(ISBN_book);
     }
 
-    /**
-     * @param ID_book
-     * @return gson String regarding info about one book, based on ID, sends it to DAO class.
-     */
-    public String downloadOneBook(int ID_book) {
-        Gson gson = new Gson();
-        book = bookDao.downloadOneBookByID(ID_book);
-        String bookString = gson.toJson(book);
-        return bookString;
-    }
-
-    public String downloadBookByTitle(String book_title) {
-        return bookDao.downloadBookByTitle(book_title);
-    }
-
-
-    /**
-     * @return gson String with information regarding all books, sends it to DAO class.
-     */
-    public String downloadAllBooks() {
-        books = bookDao.downloadAllBooks();
-        Gson gson = new Gson();
-        String bookListString = gson.toJson(books);
-        return bookListString;
-    }
-
-    /**
-     * assigns to 'book' object, the book with highest ID, by using the newlyAddedBook() method, then...
-     * returns a gson String with information regarding this most recently added book to the DAO class.
-     *
-     * @return please see above.
-     */
-    public String downloadMostRecentBook() {
-        book = bookDao.newlyAddedBook();
-        Gson gson = new Gson();
-        return gson.toJson(book);
-    }
 
     public Map return_book(Book book) {
         return bookDao.return_book(book.getID_book());

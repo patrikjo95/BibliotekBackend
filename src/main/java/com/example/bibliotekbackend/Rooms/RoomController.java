@@ -75,8 +75,8 @@ public class RoomController {
     public String pick_a_room(@RequestParam(value = "room_name_live")String room_name_live,
                               @RequestParam(value = "date_pick") String date_pick,
                               @RequestParam(value = "time_in") String time_in,
-                              @RequestParam(value = "customer_id")String customer_id) {
-        Room room = new Room(room_name_live,date_pick,time_in,customer_id);
+                              @RequestParam(value = "customer_pnr_live")String customer_pnr_live) {
+        Room room = new Room(room_name_live,date_pick,time_in,customer_pnr_live);
         Map outParameters = roomService.pick_a_room(room);
 
         Gson gson = new Gson();

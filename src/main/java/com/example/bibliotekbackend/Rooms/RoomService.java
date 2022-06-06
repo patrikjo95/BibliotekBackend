@@ -16,7 +16,7 @@ public class RoomService {
     Room room;
 
     ArrayList<Room> rooms;
-    public Map pick_a_room(Room room) {return roomDao.pick_a_room(room.getRoom_name_live(),room.getDate_pick(),room.getTime_in(),room.getCustomer_id());}
+    public Map pick_a_room(Room room) {return roomDao.pick_a_room(room.getRoom_name_live(),room.getDate_pick(),room.getTime_in(),room.getCustomer_pnr_live());}
     public Map Room_calender(String room)
     {return roomDao.Room_calender(room);}
 

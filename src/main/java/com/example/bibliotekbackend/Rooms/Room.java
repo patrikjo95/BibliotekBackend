@@ -6,7 +6,7 @@ public class Room {
     private String room_name;
     private String date_pick;
     private String time_in;
-    private String customer_id;
+    private String customer_pnr_live;
 
 
 
@@ -19,11 +19,11 @@ public class Room {
     }
 
 
-    public Room(String room_name_live, String date_pick, String time_in, String customer_pnr) {
+    public Room(String room_name_live, String date_pick, String time_in, String customer_pnr_live) {
         this.room_name_live = room_name_live;
         this.date_pick = date_pick;
         this.time_in = time_in;
-        this.customer_id = customer_id;
+        this.customer_pnr_live = customer_pnr_live;
 
     }
 
@@ -55,8 +55,9 @@ public class Room {
     public String getTime_in() {return time_in;}
     public void setTime_in(String time_in) { this.time_in = time_in;}
 
-    public String getCustomer_id() {return customer_id;}
-    public void setCustomer_id(String customer_id) {this.customer_id = customer_id;}
+    public String getCustomer_pnr_live() {return customer_pnr_live;}
+    public void setCustomer_pnr_live(String customer_pnr_live) {this.customer_pnr_live = customer_pnr_live;}
+
 
     @Override
     public String toString() {
@@ -65,4 +66,6 @@ public class Room {
                 ", room_name='" + room_name + '\'' +
                 '}';
     }
-}
+    }
+
+

@@ -129,7 +129,7 @@ public class RoomDao {
     public Map one_month_calender() {
         SimpleJdbcCall jdbcCall = new SimpleJdbcCall(jdbcTemplate).withProcedureName("one_month_calender");
 
-        Map<String,String> inParameters = new HashMap<>();
+        //Map<String,String> inParameters = new HashMap<>();
 
         SqlParameterSource in = new MapSqlParameterSource();
 
@@ -147,7 +147,6 @@ public class RoomDao {
 
         Map<String,String> inParameters = new HashMap<>();
 
-
         inParameters.put("room_name_live", room_name_live);
 
         SqlParameterSource in = new MapSqlParameterSource(inParameters);
@@ -160,21 +159,22 @@ public class RoomDao {
 
     }
 
-    public Map pick_a_room(String room_name_live,String date_pick,String time_in, String customer_id) {
+    public Map pick_a_room(String room_name_live,String date_pick,String time_in, String customer_pnr_live) {
         SimpleJdbcCall jdbcCall = new SimpleJdbcCall(jdbcTemplate).withProcedureName("pick_a_room");
 
         Map<String,Integer> inParameters = new HashMap<>();
 
-        Room room = new Room(room_name_live,date_pick,time_in,customer_id);
+        Room room = new Room(room_name_live,date_pick,time_in,customer_pnr_live);
 
         SqlParameterSource in = new MapSqlParameterSource(inParameters);
 
         Map<String,Object> outParameters = jdbcCall.execute(in);
 
+
         room.setRoom_name_live(room_name_live);
         room.setDate_pick(date_pick);
         room.setTime_in(time_in);
-        room.setCustomer_id(customer_id);
+        room.setCustomer_pnr_live(customer_pnr_live);
 
         return outParameters;
 
